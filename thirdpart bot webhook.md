@@ -1,6 +1,6 @@
 
 ## Custom bot webhook
-  - [Visitor message sent](#visitor-message-sent)
+  - [Visitor Question sent](#visitor-message-sent)
 
 When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
 You need process this message and information within this webhook using your own bot engine and give us a formatted 
