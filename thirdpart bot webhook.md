@@ -16,13 +16,13 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
 
   - [Location sent](#location-sent)
 
- When we received a response whose type is collectLocation, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on nformation we provided through this webhook.
+ When we received a response whose type is collectLocation, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on information we provided through this webhook.
 
   - [Information sent](#information-sent)
 
   When we received a response whose type is collectInformation, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
 
-### Visitor Message Sent
+### Visitor Question Sent
 
 #### Request data
 
