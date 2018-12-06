@@ -90,6 +90,7 @@
 
 #### LinkInfo
   TextResponse is represented as simple flat JSON objects with the following keys:  
+  
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | :-: | :-: | - | 
   | `type` | enums | no | yes | enums contain weblink and goToIntent|
@@ -103,6 +104,7 @@
 
 #### QuickReplyResponse
   QuickReplyResponse is represented as simple flat JSON objects with the following keys:  
+  
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | :-: | :-: | - | 
   | `message` | string  | no | yes | text of the response|
@@ -110,6 +112,7 @@
 
 #### QuickReplyItem
   QuickReplyItem is represented as simple flat JSON objects with the following keys:  
+  
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | :-: | :-: | - | 
   | `type` | string  | no | yes | enums contain  goToIntent, contactAgent, text|
@@ -119,6 +122,7 @@
 
 #### ButtonResponse
   ButtonResponse is represented as simple flat JSON objects with the following keys:  
+  
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | :-: | :-: | - | 
   | `message` | string  | no | yes | text of the response|
@@ -126,6 +130,7 @@
 
 #### ButtonItem
   QuickReplyResponse is represented as simple flat JSON objects with the following keys:  
+  
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | :-: | :-: | - | 
   | `type` | string  | no | yes | enums contain  enums contain weblink,webview and goToIntent|
@@ -139,6 +144,7 @@
 
 #### CollectInformationResponse
   CollectInformationResponse is represented as simple flat JSON objects with the following keys:  
+  
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | :-: | :-: | - | 
   | `text` | string  | no | yes | text on the button which can be clicked to open a webview to collection information|
@@ -149,6 +155,7 @@
 #### Field
 
   Field is represented as simple flat JSON objects with the following keys:  
+  
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | :-: | :-: | - | 
   | `Id` | int  | no | yes | id of the field |
