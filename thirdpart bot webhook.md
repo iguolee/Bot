@@ -1,5 +1,5 @@
 
-## Third part bot webhook
+## Custom bot webhook
   - [Visitor message sent](#visitor-message-sent)
 
 When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
@@ -93,7 +93,7 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
   - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
   - `answer` - an array of [Response](#response)
 
-### Third part bot webhook Related Object Json Format
+### Custom bot webhook Related Object Json Format
 
 #### Response
 Response is represented as simple flat json objects with the following keys:
