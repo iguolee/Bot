@@ -82,6 +82,7 @@
 
 #### TextResponse
   TextResponse is represented as simple flat JSON objects with the following keys:  
+  
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | :-: | :-: | - | 
   | `message` | string  | no | yes | text of the response|
