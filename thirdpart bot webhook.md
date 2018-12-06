@@ -1,75 +1,136 @@
 
 ## Third part bot webhook
   - [Visitor message sent](#visitor-message-sent)
+
+When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
+You need process this message and information within this webhook using your own bot engine and give us a formatted 
+response so that we can give visitor an answer base on your response through live chat. 
+
   - [Intent link clicked](#Intent-link-clicked)
+
+If the answer we give to visitor contains link/button/quickreply which point to an intent, when visitor click this link/button/quickreply, we will pass this action to this webhook with intent id and other information we defined. You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
+
   - [Helpful or not-helpful clicked](#helpful-or-not-helpful-clicked)
-  - [Location Collected](#location-collected)
-  - [Information Collected](#information-collected)
+
+Visitor can click helpful or not-helpful button to rate our answers. When visitor clicked these buttons, we will pass this action to this webhook, you can use this webhook to collect information about your bot’s correctness and improve your bot’s experience. Also, we need a formatted response from this webhook to give visitor a message for his/her rating.
+
+  - [Location sent](#location-sent)
+
+ When we received a response whose type is collectLocation, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on nformation we provided through this webhook.
+
+  - [Information sent](#information-sent)
+
+  When we received a response whose type is collectInformation, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
+
+### Visitor Message Sent
+
+#### Request data
+
+  - `sessionId ` -  id of the session
+  - `campaignId` - id of the campaign in comm100 live chat
+  - `question` - the last question that Bot receives from visitor
+  - `questionId` - id of current question
+  - [visitorInfo](#VisitorInfo)
+
+#### Response data
+  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
+  - `answer` - an array of [Response](#response)
+
+
+### Intent link clicked
+
+#### Request data
+
+  - `sessionId ` -  id of the session
+  - `campaignId` - id of the campaign in comm100 live chat
+  - `questionId` - id of originall question
+  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - [visitorInfo](#VisitorInfo)
+
+#### Response data
+  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
+  - `answer` - an array of [Response](#response)
+
+### Helpful or not-helpful clicked
+
+#### Request data
+
+  - `sessionId ` -  id of the session
+  - `campaignId` - id of the campaign in comm100 live chat
+  - `questionId` - id of [response](#response),it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent) or [Intent link clicked](#intent-link-clicked)
+  - `isHelpful` - true or false
+  - [visitorInfo](#VisitorInfo)
+
+#### Response data
+  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
+  - `answer` - an array of [Response](#response)
+
+### Location sent
+
+#### Request data
+
+  - `sessionId ` -  id of the session
+  - `campaignId` - id of the campaign in comm100 live chat
+  - `questionId` - id of originall question
+  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - [visitorInfo](#VisitorInfo)
+
+#### Response data
+  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
+  - `answer` - an array of [Response](#response)
+
+### Information sent
+
+#### Request data
+
+  - `sessionId ` -  id of the session
+  - `campaignId` - id of the campaign in comm100 live chat
+  - `questionId` - id of originall question
+  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - [visitorInfo](#VisitorInfo)
+
+#### Response data
+  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
+  - `answer` - an array of [Response](#response)
+
 ### Third part bot webhook Related Object Json Format
 
-#### VisitorInfo
+#### Response
+Response is represented as simple flat json objects with the following keys:
 
-  Visitor info is represented as simple flat JSON objects with the following keys:  
+|Name| Type| Read-only    |Mandatory | Description     | 
+| - | - | - | - | - | 
+|`type` | string | no | yes |enums contain text,image,video, quickreply, button, collectLocation, collectInformation.  | 
+|`id` | string | no | yes |id of current response.  | 
+|`content` | object | no | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is collectLocation, it should be null; when type is collectInformation, it represents [CollectInformationResponse](#collectinformationresponse)| 
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
-  | `id` | integer | yes | no | id of the visitor |
-  | `longitude` | float | no | no | longitude of the visitor location |
-  | `latitude` | float | no | no | latitude of the visitor location |
-  | `page_views` | integer | no | yes | count of the visited |
-  | `browser` | string | no | yes | visitor use browser type |
-  | `chats` | integer | no | yes | count of chat |
-  | `city` | string | no | yes | the city of the visitor |
-  | `company` | string | no | yes | the company of the visitor |
-  | `country` | string | no | yes | the country of the visitor |
-  | `current_browsing` | string | no | yes | page of the current browsing |
-  | `custom_fields` | [CustomFields](#customfields) | no | yes | an array of custom fields |
-  | `custom_variables` | [CustomVariables](#customvariables) | no | yes | an array of custom variables |
-  | `department` | int | no | yes | department of the visitor |
-  | `email` | string | no | yes | email of the visitor |
-  | `first_visit_time` | string | no | yes | the time of first visit |
-  | `flash_version` | string | no | yes | version of the flash |
-  | `ip` | string | no | yes | ip of the visitor |
-  | `keywords` | string | no | yes | search engine key |
-  | `landing_page` | string | no | yes | the page of login |
-  | `language` | string | no | yes | language |
-  | `name` | string | no | yes | name of the visitor |
-  | `operating_system` | string | no | yes | operating system of the visitor |
-  | `phone` | string | no | yes | phone of the visitor |
-  | `product_service` | string | no | yes | product service |
-  | `referrer_url` | string | no | yes | referrer url |
-  | `screen_resolution` | string | no | yes | screen resolution |
-  | `search_engine` | string | no | yes | search engine |
-  | `state` | string | no | yes | state of the visitor |
-  | `status` | string | no | yes | status of the visitor |
-  | `time_zone` | string | no | yes | time zone of the visitor |
-  | `visit_time` | string | no | yes | time of the visitor |
-  | `visits` | integer | no | yes | count of the visited |
-
-#### CustomFields
-
-  Custom fields is represented as simple flat JSON objects with the following keys:  
+#### TextResponse
+  TextResponse is represented as simple flat JSON objects with the following keys:
 
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
-  | `id` | integer  | yes | no | id of the field |
-  | `name` | string  | no | yes | name of the field |
-  | `value` | string  | no | yes | value of the field |
+  | - | - | - | - | - | 
+  | `message` | string  | no | yes | text of the response |
+  | [linkInfo](#linkinfo) | object  | no | no | link information of the text |  
 
-#### CustomVariables
-
-  Custom variables is represented as simple flat JSON objects with the following keys:  
+#### LinkInfo
+  TextResponse is represented as simple flat JSON objects with the following keys:
 
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
-  | `name` | string  | no | yes | name of the variable |
-  | `value` | string  | no | yes | value of the variable |
+  | - | - | - | - | - | 
+  | `type` | enums | no | yes | enums contain weblink and goToIntent |
+  | `startPos` | int | no | yes | start index of text which contains link info |
+  | `endPos` | int | no | yes | end index of text which contains link info |
+  | `url` | string | no | yes when type is weblink | url of the web resource that you want user to open,including web forms,articles,images,video,etc. |
+  | `intentId` | string| no | yes when type is goToIntent | id of intent that you want user to click. |
+  | `intentName` | string| no | yes when type is goToIntent | name of intent that you want user to click. |
+  | `openIn` | enums | no | yes when type is weblink | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. |
 
 #### ImageResponse
+
   ImageResponse is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
+  | - | - | - | - | - | 
   | `name` | string  | no | yes | name of the image |
   | `url` | string  | no | yes | url of the image |  
 
@@ -77,44 +138,22 @@
   VideoResponse is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
+  | - | - | - | - | - | 
   | `url` | string  | no | yes | url of the video |
 
-#### TextResponse
-  TextResponse is represented as simple flat JSON objects with the following keys:  
-  
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
-  | `message` | string  | no | yes | text of the response|
-  | [linkInfo](#linkinfo) | object  | no | no | link information of the text|  
-
-#### LinkInfo
-  TextResponse is represented as simple flat JSON objects with the following keys:  
-  
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
-  | `type` | enums | no | yes | enums contain weblink and goToIntent|
-  | `startPos` | int | no | yes | start index of text which contains link info|
-  | `endPos` | int | no | yes | end index of text which contains link info|
-  | `url` | string | no | yes when type is weblink | url of the web resource that you want user to open,including web forms,articles,images,video,etc.|
-  | `intentId` | string| no | yes when type is goToIntent | id of intent that you want user to click.|
-  | `intentName` | string| no | yes when type is goToIntent | name of intent that you want user to click.|
-  | `openIn` | enums | no | yes when type is weblink | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened.|
-
-
 #### QuickReplyResponse
-  QuickReplyResponse is represented as simple flat JSON objects with the following keys:  
-  
+  QuickReplyResponse is represented as simple flat JSON objects with the following keys:
+
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
+  | - | - | - | - | - | 
   | `message` | string  | no | yes | text of the response|
-  | [quickReplyItems]| an array of [QuickReplyItem](#quickreplyitem)  | no | no | link information of the text|  
+  | `quickReplyItems`| an array of [QuickReplyItem](#quickreplyitem)  | no | no | link information of the text|  
 
 #### QuickReplyItem
-  QuickReplyItem is represented as simple flat JSON objects with the following keys:  
-  
+  QuickReplyItem is represented as simple flat JSON objects with the following keys: 
+
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
+  | - | - | - | - | - | 
   | `type` | string  | no | yes | enums contain  goToIntent, contactAgent, text|
   | `name`| string  | no | yes | text on quick reply |
   | `intentId`| string  | no | yes when type is goToIntent  | id of the intent which current quickreply point to |
@@ -122,17 +161,17 @@
 
 #### ButtonResponse
   ButtonResponse is represented as simple flat JSON objects with the following keys:  
-  
+
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
+  | - | - | - | - | - | 
   | `message` | string  | no | yes | text of the response|
-  | [buttonItem]| an array of [ButtonItem](#buttonItem)  | no | no | link information of the text|  
+  | `buttonItem`| an array of [ButtonItem](#buttonItem)  | no | no | link information of the text|  
 
 #### ButtonItem
   QuickReplyResponse is represented as simple flat JSON objects with the following keys:  
-  
+
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
+  | - | - | - | - | - | 
   | `type` | string  | no | yes | enums contain  enums contain weblink,webview and goToIntent|
   | `text`| string  | no | no | text on button |
   | `url` | string | no | yes when type is weblink or webview | url of the web resource that you want user to open,including web forms,articles,images,video,etc.|
@@ -146,7 +185,7 @@
   CollectInformationResponse is represented as simple flat JSON objects with the following keys:  
   
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
+  | - | - | - | - | - | 
   | `text` | string  | no | yes | text on the button which can be clicked to open a webview to collection information|
   | `message` | string  | no | yes | message of the response which will be displayed upon the button|
   | `isNeedConfirm` | bool  | no | yes | whether need to confirm after webview submit|
@@ -157,7 +196,7 @@
   Field is represented as simple flat JSON objects with the following keys:  
   
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
+  | - | - | - | - | - | 
   | `Id` | int  | no | yes | id of the field |
   | `name` | string  | no | yes | name of the field|
   | `value` | string  | no | yes | value of the field|
@@ -166,82 +205,60 @@
   | `isMasked` | bool  | no | yes | when it is true, information collected will replaced by * in chat log for security |
   | `option` | an array of string  | no | yes when type is dropDownList, checkBoxList | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose|
 
-#### Response
-Response is represented as simple flat json objects with the following keys:
+#### VisitorInfo
 
-|Name| Type| Read-only    |Mandatory | Description     | 
-| - | - | :-: | :-: | - | 
-|`type` | string | no | yes |enums contain text,image,video, quickreply, button, collectLocation, collectInformation.  | 
-|`id` | string | no | yes |id of current response.  | 
-|`content` | object | no | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is collectLocation, it should be null; when type is collectInformation, it represents [CollectInformationResponse](#collectinformationresponse)| 
+  Visitor info is represented as simple flat JSON objects with the following keys:  
 
+  | Name | Type | Read-only | Mandatory | Description |    
+  | - | - | - | - | - | 
+  | `id` | integer | yes | no | id of the visitor |
+  | `chats` | integer | no | yes | count of chat |
+  | `name` | string | no | yes | name of the visitor |
+  | `language` | string | no | yes | language |
+  | `email` | string | no | yes | email of the visitor |
+  | `phone` | string | no | yes | phone of the visitor |
+  | `longitude` | float | no | no | longitude of the visitor location |
+  | `latitude` | float | no | no | latitude of the visitor location |
+  | `department` | int | no | yes | department of the visitor |
+  | `company` | string | no | yes | the company of the visitor |
+  | `city` | string | no | yes | the city of the visitor |
+  | `country` | string | no | yes | the country of the visitor |
+  | `browser` | string | no | yes | visitor use browser type |
+  | `page_views` | integer | no | yes | count of the visited |
+  | `current_browsing` | string | no | yes | page of the current browsing |
+  | `referrer_url` | string | no | yes | referrer url |
+  | `landing_page` | string | no | yes | the page of login |
+  | `search_engine` | string | no | yes | search engine |
+  | `keywords` | string | no | yes | search engine key |
+  | `operating_system` | string | no | yes | operating system of the visitor |
+  | `ip` | string | no | yes | ip of the visitor |
+  | `flash_version` | string | no | yes | version of the flash |
+  | `product_service` | string | no | yes | product service |
+  | `screen_resolution` | string | no | yes | screen resolution |
+  | `time_zone` | string | no | yes | time zone of the visitor |
+  | `first_visit_time` | string | no | yes | the time of first visit |
+  | `visit_time` | string | no | yes | time of the visitor |
+  | `visits` | integer | no | yes | count of the visited |
+  | `state` | string | no | yes | state of the visitor |
+  | `status` | string | no | yes | status of the visitor |
+  | `custom_fields` | [CustomFields](#customfields) | no | yes | an array of custom fields |
+  | `custom_variables` | [CustomVariables](#customvariables) | no | yes | an array of custom variables |
 
-#### Visitor Message Sent
+#### CustomFields
 
-##### Request
+  Custom fields is represented as simple flat JSON objects with the following keys:  
 
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `question` - the last question that Bot receives from visitor
-  - `questionId` - id of current question
-  - [visitorInfo](#VisitorInfo)
+  | Name | Type | Read-only | Mandatory | Description |    
+  | - | - | - | - | - | 
+  | `id` | integer  | yes | no | id of the field |
+  | `name` | string  | no | yes | name of the field |
+  | `value` | string  | no | yes | value of the field |
 
-##### Response
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
-  - `answer` - an array of [Response](#response)
+#### CustomVariables
 
+  Custom variables is represented as simple flat JSON objects with the following keys:  
 
-#### Intent link clicked
-
-##### Request
-
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
-  - [visitorInfo](#VisitorInfo)
-
-##### Response
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
-  - `answer` - an array of [Response](#response)
-
-
-#### Location Collected
-
-##### Request
-
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
-  - [visitorInfo](#VisitorInfo)
-
-##### Response
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
-  - `answer` - an array of [Response](#response)
-
-#### Information Collected
-
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
-  - [visitorInfo](#VisitorInfo)
-
-##### Response
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
-  - `answer` - an array of [Response](#response)
-
-#### Helpful or not-helpful clicked
-
-##### Request
-
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of [response](#response),it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent) or [Intent link clicked](#intent-link-clicked)
-  - `isHelpful` - true or false
-  - [visitorInfo](#VisitorInfo)
-
-##### Response
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
-  - `answer` - an array of [Response](#response)
+  | Name | Type | Read-only | Mandatory | Description |    
+  | - | - | - | - | - | 
+  | `name` | string  | no | yes | name of the variable |
+  | `value` | string  | no | yes | value of the variable |
