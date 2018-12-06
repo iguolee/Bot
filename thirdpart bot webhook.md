@@ -1,9 +1,9 @@
 
 ## Custom bot webhook
-  - [Visitor Question sent](#visitor-message-sent)
+  - [Visitor Question sent](#visitor-question-sent)
 
-When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
-You need process this message and information within this webhook using your own bot engine and give us a formatted 
+When visitor sent a question through live chat, we will pass this question and other information we defined to this webhook. 
+You need process this question and information within this webhook using your own bot engine and give us a formatted 
 response so that we can give visitor an answer base on your response through live chat. 
 
   - [Intent link clicked](#Intent-link-clicked)
@@ -44,7 +44,7 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
   - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
@@ -57,7 +57,7 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
 
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of [response](#response),it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent) or [Intent link clicked](#intent-link-clicked)
+  - `questionId` - id of [response](#response),it is originally from the response of the webhook [Visitor Question Sent](#visitor-question-sent) or [Intent link clicked](#intent-link-clicked)
   - `isHelpful` - true or false
   - [visitorInfo](#VisitorInfo)
 
@@ -72,7 +72,7 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
   - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
@@ -86,7 +86,7 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
   - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
