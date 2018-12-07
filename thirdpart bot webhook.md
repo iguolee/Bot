@@ -221,8 +221,9 @@ Response is represented as simple flat json objects with the following keys:
   | `latitude` | float | no | no | latitude of the visitor location |
   | `department` | int | no | yes | department of the visitor |
   | `company` | string | no | yes | the company of the visitor |
-  | `city` | string | no | yes | the city of the visitor |
   | `country` | string | no | yes | the country of the visitor |
+  | `state` | string | no | yes | state of the visitor |
+  | `city` | string | no | yes | the city of the visitor |
   | `browser` | string | no | yes | visitor use browser type |
   | `page_views` | integer | no | yes | count of the visited |
   | `current_browsing` | string | no | yes | page of the current browsing |
@@ -239,7 +240,7 @@ Response is represented as simple flat json objects with the following keys:
   | `first_visit_time` | string | no | yes | the time of first visit |
   | `visit_time` | string | no | yes | time of the visitor |
   | `visits` | integer | no | yes | count of the visited |
-  | `state` | string | no | yes | state of the visitor |
+
   | `status` | string | no | yes | status of the visitor |
   | `custom_fields` | [CustomFields](#customfields) | no | yes | an array of custom fields |
   | `custom_variables` | [CustomVariables](#customvariables) | no | yes | an array of custom variables |
