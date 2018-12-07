@@ -1,6 +1,6 @@
 
-## Custom bot webhook
-  - [Visitor Question sent](#visitor-question-sent)
+## Custom Bot webhook
+  - [Visitor question sent](#visitor-question-sent)
 
 When visitor sent a question through live chat, we will pass this question and other information we defined to this webhook. 
 You need process this question and information within this webhook using your own bot engine and give us a formatted 
@@ -16,13 +16,13 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
 
   - [Location sent](#location-sent)
 
- When we received a response whose type is collectLocation, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on information we provided through this webhook.
+When we received a response whose type is collectLocation, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response based on information we provided through this webhook.
 
   - [Information sent](#information-sent)
 
-  When we received a response whose type is collectInformation, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
+When we received a response whose type is collectInformation, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
 
-### Visitor Question Sent
+### Visitor question Sent
 
 #### Request data
 
@@ -35,6 +35,8 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
 #### Response data
   - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
   - `answer` - an array of [Response](#response)
+  
+    [Sample Json](#sample-json)
 
 
 ### Intent link clicked
@@ -44,12 +46,14 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
   - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
   - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
   - `answer` - an array of [Response](#response)
+
+    [Sample Json](#sample-json)
 
 ### Helpful or not-helpful clicked
 
@@ -57,13 +61,15 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
 
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of [response](#response),it is originally from the response of the webhook [Visitor Question Sent](#visitor-question-sent) or [Intent link clicked](#intent-link-clicked)
+  - `questionId` - id of [response](#response),it is originally from the response of the webhook [Visitor question Sent](#visitor-question-sent) or [Intent link clicked](#intent-link-clicked)
   - `isHelpful` - true or false
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
   - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
   - `answer` - an array of [Response](#response)
+
+    [Sample Json](#sample-json)
 
 ### Location sent
 
@@ -72,12 +78,14 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
   - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
   - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
   - `answer` - an array of [Response](#response)
+
+    [Sample Json](#sample-json)
 
 ### Information sent
 
@@ -86,14 +94,16 @@ Visitor can click helpful or not-helpful button to rate our answers. When visito
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
   - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
   - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
   - `answer` - an array of [Response](#response)
 
-### Custom bot webhook Related Object Json Format
+    [Sample Json](#sample-json)
+
+### Custom Bot webhook Related Object Json Format
 
 #### Response
 Response is represented as simple flat json objects with the following keys:
@@ -165,7 +175,7 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | - | - | - | 
   | `message` | string  | no | yes | text of the response|
-  | `buttonItem`| an array of [ButtonItem](#buttonItem)  | no | no | link information of the text|  
+  | `buttonItems`| an array of [ButtonItem](#buttonItem)  | no | no | link information of the text|  
 
 #### ButtonItem
   QuickReplyResponse is represented as simple flat JSON objects with the following keys:  
@@ -262,3 +272,149 @@ Response is represented as simple flat json objects with the following keys:
   | - | - | - | - | - | 
   | `name` | string  | no | yes | name of the variable |
   | `value` | string  | no | yes | value of the variable |
+
+  #### Sample Json
+  ```json
+  {
+    "type": "highConfidenceAnswer",// highConfidenceAnswer, possibleAnswer or noAnswer
+    "answer": [
+        {
+            "id": "1",
+            "type": "text",
+            "content": {
+                "message": "this is a plain message"
+            }
+        },
+        {
+            "id": "2",
+            "type": "text",
+            "content": {
+                "message": "this is a web link message",
+                "linkInfo": {
+                    "type": "weblink",// weblink or goToIntent.
+                    "startPos": 10,
+                    "endPos": 17,
+                    "url": "www.test.com",
+                    "openIn": "currentWindow"// currentWindow, sideWindow or newWindow.
+                }
+            }
+        },
+        {
+            "id": "3",
+            "type": "text",
+            "content": {
+                "message": "this is a go to intent message",
+                "linkInfo": {
+                    "type": "goToIntent",
+                    "startPos": 10,
+                    "endPos": 17,
+                    "intentId": "test-intent-id",
+                    "intentName": "test-intent-name"
+                }
+            }
+        },
+        {
+            "id": "4",
+            "type": "image",
+            "content": {
+                "name": "test-image.jpg",
+                "url": "www.test.com/test-image.jpg"
+            }
+        },
+        {
+            "id": "5",
+            "type": "video",
+            "content": {
+                "url": "www.test.com/test-video.jpg"
+            }
+        },
+        {
+            "id": "6",
+            "type": "quickreply",
+            "content": {
+                "message": "this is a quick reply response",
+                "quickReplyItems": [
+                    {
+                        "type": "goToIntent",// goToIntent, contactAgent or text.
+                        "name": "click to trigger test-intent-name",
+                        "intentId": "test-intent-id",
+                        "intentName": "test-intent-name"
+                    },
+                    {
+                        "type": "contactAgent",
+                        "name": "click to contact agent"
+                    },
+                    {
+                        "type": "text",
+                        "name": "click to send this text"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "7",
+            "type": "button",
+            "content": {
+                "message": "this is a button response",
+                "buttonItems": [
+                    {
+                        "type": "goToIntent",// goToIntent, weblink or webview.
+                        "text": "click to trigger test-intent-name",
+                        "intentId": "test-intent-id",
+                        "intentName": "test-intent-name"
+                    },
+                    {
+                        "type": "weblink",
+                        "text": "click to open this url in web page",
+                        "url": "www.test.com",
+                        "openIn": "currentWindow"
+                    },
+                    {
+                        "type": "webview",
+                        "text": "click to open this url in web view",
+                        "url": "www.test.com",
+                        "openStyle": "full"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "8",
+            "type": "collectLocation",
+            "content": null
+        },
+        {
+            "id": "9",
+            "type": "collectInformation",
+            "content": {
+                "text": "",
+                "message": "",
+                "isNeedConfirm": "true",
+                "fields": [
+                    {
+                        "Id": 1,
+                        "type": "text",// text, textArea, radio, checkBox, dropDownList or checkBoxList
+                        "name": "field-1",
+                        "value": "",
+                        "isRequired": true,
+                        "isMasked": true
+                    },
+                    {
+                        "Id": 2,
+                        "type": "dropDownList",
+                        "name": "field-2",
+                        "value": "",
+                        "isRequired": true,
+                        "isMasked": true,
+                        "option": [
+                            "value-1",
+                            "value-2",
+                            "value-3"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
