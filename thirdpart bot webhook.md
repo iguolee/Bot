@@ -273,7 +273,7 @@ Response is represented as simple flat json objects with the following keys:
   | `name` | string  | no | yes | name of the variable |
   | `value` | string  | no | yes | value of the variable |
 
-  #### Sample Json
+  #### Response Sample Json
   ```json
   {
     "type": "highConfidenceAnswer",// highConfidenceAnswer, possibleAnswer or noAnswer
