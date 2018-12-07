@@ -36,7 +36,7 @@ When we received a response whose type is collectInformation, we will display an
   - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
   - `answer` - an array of [Response](#response)
   
-    [Sample Json](#sample-json)
+    [Sample Json](#response-sample-json)
 
 
 ### Intent link clicked
