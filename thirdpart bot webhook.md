@@ -387,8 +387,8 @@ Response is represented as simple flat json objects with the following keys:
             "id": "9",
             "type": "collectInformation",
             "content": {
-                "text": "",
-                "message": "",
+                "text": "book ticket",
+                "message": "please fill the form below",
                 "isNeedConfirm": "true",
                 "fields": [
                     {
@@ -407,9 +407,9 @@ Response is represented as simple flat json objects with the following keys:
                         "isRequired": true,
                         "isMasked": true,
                         "option": [
-                            "value-1",
-                            "value-2",
-                            "value-3"
+                            "value": "-1",
+                            "value": "-2",
+                            "value": "-3"
                         ]
                     }
                 ]
