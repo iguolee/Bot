@@ -291,7 +291,7 @@ Response is represented as simple flat json objects with the following keys:
             "content": {
                 "message": "this is a web link message",
                 "linkInfo": {
-                    "type": "weblink",// weblink or goToIntent.
+                    "type": "hypelink",// hypelink or goToIntent.
                     "startPos": 10,
                     "endPos": 17,
                     "ifPushPage": true,
