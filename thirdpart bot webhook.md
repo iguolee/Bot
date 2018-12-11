@@ -294,6 +294,7 @@ Response is represented as simple flat json objects with the following keys:
                     "type": "weblink",// weblink or goToIntent.
                     "startPos": 10,
                     "endPos": 17,
+                    "ifPushPage": true,
                     "url": "www.test.com",
                     "openIn": "currentWindow"// currentWindow, sideWindow or newWindow.
                 }
