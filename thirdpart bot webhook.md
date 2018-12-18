@@ -16,10 +16,7 @@ When a chat allocated to bot, live chat will request for the greeting message fr
   - `event ` -  visitor.question.asked / intent.link.clicked / bot.answer.rated / visitor.location.shared / form.collected
   - `unique_id ` -  it is the unique id of the event. 
   - `time ` -  event happens time
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `question` - the last question that Bot receives from visitor
-  - `questionId` - id of current question
+  - [Webhook Request](#webhook-request)
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
@@ -161,6 +158,18 @@ Response is represented as simple flat json objects with the following keys:
   | `isMasked` | bool  | no | yes | when it is true, information collected will replaced by * in chat log for security |
   | `option` | an array of string  | no | yes when type is dropDownList, checkBoxList | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose|
 
+#### Webhook Request
+
+  Webhook Request is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only | Mandatory | Description |    
+  | - | - | - | - | - | 
+  | `sessionId` | string | yes | no | id of the session |
+  | `campaignId` | int | no | yes | id of the campaign in comm100 live chat |
+  | `question` | string | no | yes | the last question that Bot receives from visitor |
+  | `questionId` | string | no | yes | id of current question |
+  | `intentId` | int | no | yes | id of intent which visitor clicked,it is originally from the response of the webhook [Visitor Message Sent](#visitor-message-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected) |
+  | `isHelpful` | bool | no | no | true or false |
 
 #### VisitorInfo
 
