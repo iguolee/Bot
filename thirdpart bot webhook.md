@@ -33,10 +33,7 @@ When a chat allocated to bot, live chat will request for the greeting message fr
   - `event ` -  visitor.question.asked / intent.link.clicked / bot.answer.rated / visitor.location.shared / form.collected
   - `unique_id ` -  it is the unique id of the event. 
   - `time ` -  event happens time
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
+  - [Webhook Request](#webhook-request)
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
