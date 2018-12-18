@@ -1,31 +1,21 @@
 
-## Custom Bot webhook
-  - [Visitor question sent](#visitor-question-sent)
+## Bot webhook
+  - [Bot Answer Requested](#bot-answer-requested)
 
-When visitor sent a question through live chat, we will pass this question and other information we defined to this webhook. 
-You need process this question and information within this webhook using your own bot engine and give us a formatted 
-response so that we can give visitor an answer base on your response through live chat. 
+When visitor sent a question/intent link clicked event/visitor location shared event/helpful or not-helpful clicked event/form information collected event through live chat, we will pass this question/intent link clicked event/visitor location shared event/helpful or not-helpful clicked event/form information collected event and other information we defined to this webhook. You need process this question/intent link clicked event/visitor location shared event/helpful or not-helpful clicked event/form information collected event and information we provided within this webhook using your own Bot engine and give us a formatted response so that we can give visitor an answer base on your response through live chat. 
 
-  - [Intent link clicked](#Intent-link-clicked)
+  - [Bot Greeting Message Requested](#bot-greeting-message-requested)
 
-If the answer we give to visitor contains link/button/quickreply which point to an intent, when visitor click this link/button/quickreply, we will pass this action to this webhook with intent id and other information we defined. You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
+When a chat allocated to bot, live chat will request for the greeting message from bot, then bot pass the request and other pre- defined information to the webhook. The webhook need process this request and other pre- defined information within the webhook using your own Bot engine and send back a formatted greeting message response so that we can give visitor a greeting message base on your response through live chat.
 
-  - [Helpful or not-helpful clicked](#helpful-or-not-helpful-clicked)
 
-Visitor can click helpful or not-helpful button to rate our answers. When visitor clicked these buttons, we will pass this action to this webhook, you can use this webhook to collect information about your bot’s correctness and improve your bot’s experience. Also, we need a formatted response from this webhook to give visitor a message for his/her rating.
-
-  - [Location sent](#location-sent)
-
-When we received a response whose type is collectLocation, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response based on information we provided through this webhook.
-
-  - [Information sent](#information-sent)
-
-When we received a response whose type is collectInformation, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
-
-### Visitor question Sent
+### Bot Answer Requested
 
 #### Request data
 
+  - `event ` -  visitor.question.asked / intent.link.clicked / bot.answer.rated / visitor.location.shared / form.collected
+  - `unique_id ` -  it is the unique id of the event. 
+  - `time ` -  event happens time
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
   - `question` - the last question that Bot receives from visitor
@@ -39,10 +29,13 @@ When we received a response whose type is collectInformation, we will display an
     [Sample Json](#response-sample-json)
 
 
-### Intent link clicked
+### Bot Greeting Message Requested
 
 #### Request data
 
+  - `event ` -  visitor.question.asked / intent.link.clicked / bot.answer.rated / visitor.location.shared / form.collected
+  - `unique_id ` -  it is the unique id of the event. 
+  - `time ` -  event happens time
   - `sessionId ` -  id of the session
   - `campaignId` - id of the campaign in comm100 live chat
   - `questionId` - id of originall question
@@ -55,53 +48,6 @@ When we received a response whose type is collectInformation, we will display an
 
     [Sample Json](#sample-json)
 
-### Helpful or not-helpful clicked
-
-#### Request data
-
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of [response](#response),it is originally from the response of the webhook [Visitor question Sent](#visitor-question-sent) or [Intent link clicked](#intent-link-clicked)
-  - `isHelpful` - true or false
-  - [visitorInfo](#VisitorInfo)
-
-#### Response data
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
-  - `answer` - an array of [Response](#response)
-
-    [Sample Json](#sample-json)
-
-### Location sent
-
-#### Request data
-
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
-  - [visitorInfo](#VisitorInfo)
-
-#### Response data
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
-  - `answer` - an array of [Response](#response)
-
-    [Sample Json](#sample-json)
-
-### Information sent
-
-#### Request data
-
-  - `sessionId ` -  id of the session
-  - `campaignId` - id of the campaign in comm100 live chat
-  - `questionId` - id of originall question
-  - `intentId` - id of intent which visitor clicked,it is originally from the response of the webhook [Visitor question Sent](#visitor-question-sent), another [Intent link clicked](#intent-link-clicked), [Location Collected](#location-collected), [Information Collection](#information-collected)
-  - [visitorInfo](#VisitorInfo)
-
-#### Response data
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
-  - `answer` - an array of [Response](#response)
-
-    [Sample Json](#sample-json)
 
 ### Custom Bot webhook Related Object Json Format
 
@@ -214,6 +160,7 @@ Response is represented as simple flat json objects with the following keys:
   | `isRequired` | bool  | no | yes | when it is true, visitor have to input a value in the field before submit |
   | `isMasked` | bool  | no | yes | when it is true, information collected will replaced by * in chat log for security |
   | `option` | an array of string  | no | yes when type is dropDownList, checkBoxList | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose|
+
 
 #### VisitorInfo
 
