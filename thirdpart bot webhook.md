@@ -1,46 +1,46 @@
 
-## Bot webhook
-  - [Bot Answer Requested](#bot-answer-requested)
+## Custom Bot webhook Event
+  - Visitor Question Asked Event
 
-When visitor sent a question/intent link clicked event/visitor location shared event/helpful or not-helpful clicked event/form information collected event through live chat, we will pass this question/intent link clicked event/visitor location shared event/helpful or not-helpful clicked event/form information collected event and other information we defined to this webhook. You need process this question/intent link clicked event/visitor location shared event/helpful or not-helpful clicked event/form information collected event and information we provided within this webhook using your own Bot engine and give us a formatted response so that we can give visitor an answer base on your response through live chat. 
+When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
+You need process this message and information within this webhook using your own bot engine and give us a formatted 
+response so that we can give visitor an answer base on your response through live chat.  
 
-  - [Bot Greeting Message Requested](#bot-greeting-message-requested)
+  - Intent Link Clicked Event
 
-When a chat allocated to bot, live chat will request for the greeting message from bot, then bot pass the request and other pre- defined information to the webhook. The webhook need process this request and other pre- defined information within the webhook using your own Bot engine and send back a formatted greeting message response so that we can give visitor a greeting message base on your response through live chat.
+If the answer we give to visitor contains link/button/quickreply which point to an intent, when visitor click this link/button/quickreply, we will pass this action to this webhook with intent id and other information we defined. You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
+  - Bot Answer Rated Event
 
-### Bot Answer Requested
+Visitor can click helpful or not-helpful button to rate our answers. When visitor clicked these buttons, we will pass this action to this webhook, you can use this webhook to collect information about your bot’s correctness and improve your bot’s experience. Also, we need a formatted response from this webhook to give visitor a message for his/her rating.
+
+  - Visitor Location Shared Event
+
+When we received a response whose type is collectLocation, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on nformation we provided through this webhook.
+
+  - Form Information Collected Event
+
+When we received a response whose type is collectInformation, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
+
+  - Bot Greeting Message Requested Event
+
+When we received a response whose event type is bot.greetingMessage.requested, e will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
+
+### Request and Response Data of Custom Bot webhook 
 
 #### Request data
 
-  - `event ` -  visitor.question.asked / intent.link.clicked / bot.answer.rated / visitor.location.shared / form.collected
+  - `event ` -  visitor.question.asked / intent.link.clicked / bot.answer.rated / visitor.location.shared / form.collected / bot.greetingMessage.requested
   - `unique_id ` -  it is the unique id of the event. 
   - `time ` -  event happens time
   - [Webhook Request Data](#webhook-request-data)
   - [visitorInfo](#VisitorInfo)
 
 #### Response data
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
+  
   - `answer` - an array of [Response](#response)
   
     [Sample Json](#response-sample-json)
-
-
-### Bot Greeting Message Requested
-
-#### Request data
-
-  - `event ` -  visitor.question.asked / intent.link.clicked / bot.answer.rated / visitor.location.shared / form.collected
-  - `unique_id ` -  it is the unique id of the event. 
-  - `time ` -  event happens time
-  - [Webhook Request Data](#webhook-request-data)
-  - [visitorInfo](#VisitorInfo)
-
-#### Response data
-  - `type` - string , contains  highConfidenceAnswer, possibleAnswer, noAnswer
-  - `answer` - an array of [Response](#response)
-
-    [Sample Json](#sample-json)
 
 
 ### Custom Bot webhook Related Object Json Format
@@ -228,9 +228,7 @@ Response is represented as simple flat json objects with the following keys:
 
   #### Response Sample Json
   ```json
-  {
-    "type": "highConfidenceAnswer",// highConfidenceAnswer, possibleAnswer or noAnswer
-    "answer": [
+   [
         {
             "id": "1",
             "type": "text",
@@ -370,5 +368,4 @@ Response is represented as simple flat json objects with the following keys:
             }
         }
     ]
-}
 ```
