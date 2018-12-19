@@ -1,5 +1,5 @@
 
-## Custom Bot webhook Event
+## Custom Bot Webhook Event
   - Visitor Question Asked Event
 
 When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
