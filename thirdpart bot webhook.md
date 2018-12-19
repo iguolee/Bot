@@ -1,6 +1,6 @@
 
 
-## Custom Bot Webhook Event
+## Third-Party Bot Webhook Event
   - Visitor Question Asked Event
 
 When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
@@ -10,10 +10,6 @@ response so that we can give visitor an answer base on your response through liv
   - Intent Link Clicked Event
 
 If the answer we give to visitor contains link/button/quickreply which point to an intent, when visitor click this link/button/quickreply, we will pass this action to this webhook with intent id and other information we defined. You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
-
-  - Bot Answer Rated Event
-
-Visitor can click helpful or not-helpful button to rate our answers. When visitor clicked these buttons, we will pass this action to this webhook, you can use this webhook to collect information about your bot’s correctness and improve your bot’s experience. Also, we need a formatted response from this webhook to give visitor a message for his/her rating.
 
   - Visitor Location Shared Event
 
@@ -27,11 +23,11 @@ When we received a response whose event type is form.collected, we will display 
 
 When we received a response whose event type is bot.chat.started, we will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
-### Request and Response Data of Custom Bot webhook 
+### Request and Response Data of Third-Party Bot webhook 
 
 #### Request data
 
-  - `event ` -  visitor.question.asked / intent.link.clicked / bot.answer.rated / visitor.location.shared / form.collected / bot.chat.started
+  - `event ` -  visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.chat.started
   - `unique_id ` -  it is the unique id of the event. 
   - `time ` -  event happens time
   - [Webhook Request Data](#webhook-request-data)
@@ -44,7 +40,7 @@ When we received a response whose event type is bot.chat.started, we will pass t
     [Sample Json](#response-sample-json)
 
 
-### Custom Bot webhook Related Object Json Format
+### Third-Party Bot webhook Related Object Json Format
 
 #### Response
 Response is represented as simple flat json objects with the following keys:
@@ -163,8 +159,7 @@ Response is represented as simple flat json objects with the following keys:
   | `chatId` | string | yes | yes | | id of the chat |
   | `campaignId` | int | yes | yes | id of the campaign in comm100 live chat |
   | `question` | string | yes | no | the last question that Bot receives from visitor. when the event type is visitor.question.asked, it is mandatory, otherwise not |
-  | `intentId` | int | yes | no | when the event type is bot.answer.rated or form.collected or intent.link.clicked or visitor.location.shared, it is mandatory, otherwise not|
-  | `isHelpful` | bool | yes | no | when the event type is bot.answer.rated, it is mandatory, otherwise not |
+  | `intentId` | int | yes | no | when the event type is form.collected or intent.link.clicked or visitor.location.shared, it is mandatory, otherwise not|
   | `formValues` | array of [Form Values](#form-values) | yes | no | when the event type is form.collected, it is mandatory, otherwise not |
   
 #### Form Values
