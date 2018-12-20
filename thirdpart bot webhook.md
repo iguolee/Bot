@@ -47,8 +47,8 @@ Response is represented as simple flat json objects with the following keys:
 
 |Name| Type| Read-only    |Mandatory | Description     | 
 | - | - | - | - | - | 
-|`type` | string | yes | yes |enums contain text,image,video, quickreply, button, collectLocation, collectFormValue.  | 
-|`content` | object | yes | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is collectLocation, it should be null; when type is collectInformation, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
+|`type` | string | yes | yes |enums contain text,image,video, quickreply, button, location, form.  | 
+|`content` | object | yes | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
 
 #### TextResponse
   TextResponse is represented as simple flat JSON objects with the following keys:
@@ -63,13 +63,13 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | - | - | - | 
-  | `type` | enums | yes | yes | enums contain weblink and goToIntent |
+  | `type` | enums | yes | yes | enums contain hyperlink and goToIntent |
   | `startPosition` | int | yes | yes | start index of text which contains link info |
   | `endPosition` | int | yes | yes | end index of text which contains link info |
-  | `url` | string | yes | no | url of the web resource that you want user to open,including web forms,articles,images,video,etc. |
-  | `intentId` | string| yes | no | id of intent that you want user to click. |
-  | `intentName` | string| yes | no | name of intent that you want user to click. |
-  | `openIn` | enums | yes | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. |
+  | `url` | string | yes | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink, it is mandatory |
+  | `intentId` | string| yes | no | id of intent that you want user to click. When the type is goToIntent, it is mandatory  |
+  | `intentName` | string| yes | no | name of intent that you want user to click.. When the type is goToIntent, it is mandatory |
+  | `openIn` | enums | yes | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is goToIntent, it is mandatory |
 
 #### ImageResponse
 
@@ -102,8 +102,8 @@ Response is represented as simple flat json objects with the following keys:
   | - | - | - | - | - | 
   | `type` | string  | yes | yes | enums contain  goToIntent, contactAgent, text|
   | `name`| string  | yes | yes | text on quick reply |
-  | `intentId`| string  | yes | no  | id of the intent which current quickreply point to |
-  | `intentName`| string  | yes | no  | name of the intent which current quickreply point to |  
+  | `intentId`| string  | yes | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory |
+  | `intentName`| string  | yes | no  | name of the intent which current quickreply point to. When the type is goToIntent, it is mandatory |  
 
 #### ButtonResponse
   ButtonResponse is represented as simple flat JSON objects with the following keys:  
@@ -118,13 +118,13 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | - | - | - | 
-  | `type` | string  | yes | yes | enums contain  enums contain weblink,webview and goToIntent|
+  | `type` | string  | yes | yes | enums contain  enums contain hyperlink,webview and goToIntent|
   | `text`| string  | yes | yes | text on button |
-  | `url` | string | yes | no | url of the web resource that you want user to open,including web forms,articles,images,video,etc.|
-  | `intentId`| string  | yes | no | id of the intent which current quickreply point to |
-  | `intentName`| string  | yes | no | name of the intent which current quickreply point to |
-  | `openIn` | enums | yes | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened.|
-  | `openStyle` | enums | yes | no | enums contain compact, tall, full. This field defined the way that webview will be opened.|
+  | `url` | string | yes | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink or webview, it is mandatory|
+  | `intentId`| string  | yes | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory |
+  | `intentName`| string  | yes | no | name of the intent which current quickreply point to. When the type is goToIntent, it is mandatory |
+  | `openIn` | enums | yes | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory|
+  | `openStyle` | enums | yes | no | enums contain compact, tall, full. This field defined the way that webview will be opened. When the type is webview, it is mandatory|
 
 
 #### CollectFormValueResponse
@@ -148,7 +148,7 @@ Response is represented as simple flat json objects with the following keys:
   | `type` | string  | yes | yes | field type, contains text, textArea, radio, checkBox, dropDownList, checkBoxList |
   | `ifRequired` | bool  | yes | yes | when it is true, visitor have to input a value in the field before submit |
   | `ifMasked` | bool  | yes | yes | when it is true, information collected will replaced by * in chat log for security |
-  | `options` | an array of string  | yes | no | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose|
+  | `options` | an array of string  | yes | no | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose. When the type is dropDownList or checkBoxList, it is mandatory|
 
 #### Webhook Request Data
 
@@ -168,8 +168,8 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | :-: | :-: | - | 
-  | `lable` | string  | yes | yes | lable of the formValue |
-  | `value` | string  | yes | yes | value of the formValue |
+  | `lable` | string  | yes | yes | lable of the form item |
+  | `value` | string  | yes | yes | value of the form item |
   
 #### VisitorInfo
 
