@@ -20,24 +20,27 @@ When we received a response whose event type is bot.greetingMessage.requested, w
 
 |Name| Type    |Mandatory | Description     | 
 | - | - | - | - | 
-|`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
-|`content` | object | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)|
-  
-  ### Visitor Question Asked Event
+|`botAnswer` | array of [Response](#response) | yes |   | 
+Here is a sample of response json: [sample](#response-sample-json)
+
+### Visitor Question Asked Event
 
 When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
 You need process this message and information within this webhook using your own bot engine and give us a formatted 
 response so that we can give visitor an answer base on your response through live chat. 
 
-  #### Webhook Request Data Format for Visitor Question Asked Event
+  #### Request Data Format
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
+  | `uniqueId` | string | yes | it is the unique id of the event. |
+  | `time` | string | yes | event happens time |
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `question` | string | yes | the last question that Bot receives from visitor.  |
 
-  #### Webhook Response Data Format for Visitor Question Asked Event
+  #### Response Data Format
 
 The same as Bot Greeting Message Requested Event
   
@@ -45,15 +48,19 @@ The same as Bot Greeting Message Requested Event
 
 If the answer we give to visitor contains link/button/quickreply which point to an intent, when visitor click this link/button/quickreply, we will pass this action to this webhook with intent id and other information we defined. You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
-  #### Webhook Request Data Format for Intent Link Clicked Event
+  #### Request Data Format
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
+  | `uniqueId` | string | yes | it is the unique id of the event. |
+  | `time` | string | yes | event happens time |
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `intentId` | int | yes | the last intent that visitor clicked. |
+  | `responseId` | string | yes | the response that contains the intent which clicked by the visitor. |
+  | `intentId` | string | yes | the last intent that visitor clicked. |
 
-  #### Webhook Response Data Format for Intent Link Clicked Event
+  #### Response Data Format
 
 The same as Bot Greeting Message Requested Event
   
@@ -61,15 +68,19 @@ The same as Bot Greeting Message Requested Event
 
 When we received a response whose event type is visitor.location.shared, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on nformation we provided through this webhook.
 
-  #### Webhook Request Data Format for Visitor Location Shared Event
+  #### Request Data Format
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
+  | `uniqueId` | string | yes | it is the unique id of the event. |
+  | `time` | string | yes | event happens time |
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `intentId` | int | yes |  the last intent that required visitor location. |
+  | `responseId` | string | yes | the response that contains the intent which required visitor location. |
+  | `intentId` | string | yes |  the last intent that required visitor location. |
 
-  #### Webhook Response Data Format for Visitor Location Shared Event
+  #### Response Data Format
 
 The same as Bot Greeting Message Requested Event
   
@@ -77,36 +88,22 @@ The same as Bot Greeting Message Requested Event
 
 When we received a response whose event type is form.collected, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
 
-  #### Webhook Request Data Format for Form Collected Event
+  #### Request Data Format
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
+  | `uniqueId` | string | yes | it is the unique id of the event. |
+  | `time` | string | yes | event happens time |
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
+  | `responseId` | string | yes | the response that contains the intent which required collect information by form. |
   | `formValues` | array of [Form Values](#form-values) | yes |  |
 
-  #### Webhook Response Data Format for Form Collected Event
+  #### Response Data Format
 
 The same as Bot Greeting Message Requested Event
   
-
-### Request and Response Data of Third-Party Bot webhook 
-
-#### Request data
-
-  - `event ` -  visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested
-  - `unique_id ` -  it is the unique id of the event. 
-  - `time ` -  event happens time
-  - [Webhook Request Data](#webhook-request-data)
-  - [visitorInfo](#VisitorInfo)
-
-#### Response data
-  
-  - `answer` - an array of [Response](#response)
-  
-    [Sample Json](#response-sample-json)
-
-
 ### Third-Party Bot webhook Related Object Json Format
 
 #### Response
