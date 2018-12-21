@@ -45,170 +45,170 @@ When we received a response whose event type is bot.chat.started, we will pass t
 #### Response
 Response is represented as simple flat json objects with the following keys:
 
-|Name| Type| Read-only    |Mandatory | Description     | 
-| - | - | - | - | - | 
-|`type` | string | yes | yes |enums contain text,image,video, quickreply, button, location, form.  | 
-|`content` | object | yes | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
+|Name| Type    |Mandatory | Description     | 
+| - | - | - | - | 
+|`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
+|`content` | object | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
 
 #### TextResponse
   TextResponse is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `message` | string  | yes | yes | text of the response |
-  | [link](#link) | object  | yes | yes | links in the text |  
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `message` | string  | yes | text of the response |
+  | [link](#link) | object  | yes | links in the text |  
 
 #### Link
   Link is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `type` | enums | yes | yes | enums contain hyperlink and goToIntent |
-  | `startPosition` | int | yes | yes | start index of text which contains link info |
-  | `endPosition` | int | yes | yes | end index of text which contains link info |
-  | `url` | string | yes | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink, it is mandatory, otherwise not |
-  | `intentId` | string| yes | no | id of intent that you want user to click. When the type is goToIntent, it is mandatory, otherwise not  |
-  | `intentName` | string| yes | no | name of intent that you want user to click.. When the type is goToIntent, it is mandatory, otherwise not |
-  | `openIn` | enums | yes | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is goToIntent, it is mandatory, otherwise not |
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `type` | enums | yes | enums contain hyperlink and goToIntent |
+  | `startPosition` | int | yes | start index of text which contains link info |
+  | `endPosition` | int | yes | end index of text which contains link info |
+  | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink, it is mandatory, otherwise not |
+  | `intentId` | string| no | id of intent that you want user to click. When the type is goToIntent, it is mandatory, otherwise not  |
+  | `intentName` | string | no | name of intent that you want user to click.. When the type is goToIntent, it is mandatory, otherwise not |
+  | `openIn` | enums | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is goToIntent, it is mandatory, otherwise not |
 
 #### ImageResponse
 
   ImageResponse is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `name` | string  | yes | yes | name of the image |
-  | `url` | string  | yes | yes | url of the image |  
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `name` | string  | yes | name of the image |
+  | `url` | string  | yes | url of the image |  
 
 #### VideoResponse
   VideoResponse is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `url` | string  | yes | yes | url of the video |
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `url` | string  | yes | url of the video |
 
 #### QuickReplyResponse
   QuickReplyResponse is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `message` | string  | yes | yes | text of the response|
-  | `items`| array of [QuickReplyItem](#quickreplyitem)  | yes | yes | link information of the text|  
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `message` | string  | yes | text of the response|
+  | `items`| array of [QuickReplyItem](#quickreplyitem)  | yes | link information of the text|  
 
 #### QuickReplyItem
   QuickReplyItem is represented as simple flat JSON objects with the following keys: 
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `type` | string  | yes | yes | enums contain  goToIntent, contactAgent, text|
-  | `name`| string  | yes | yes | text on quick reply |
-  | `intentId`| string  | yes | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
-  | `intentName`| string  | yes | no  | name of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |  
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `type` | string  | yes | enums contain  goToIntent, contactAgent, text|
+  | `name`| string  | yes | text on quick reply |
+  | `intentId`| string  | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
+  | `intentName`| string  | no  | name of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |  
 
 #### ButtonResponse
   ButtonResponse is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `message` | string  | yes | yes | text of the response|
-  | `items`| array of [ButtonItem](#buttonItem)  | yes | yes | link information of the text|  
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `message` | string  | yes | text of the response|
+  | `items`| array of [ButtonItem](#buttonItem)  | yes | link information of the text|  
 
 #### ButtonItem
   ButtonItem is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `type` | string  | yes | yes | enums contain  enums contain hyperlink,webview and goToIntent|
-  | `text`| string  | yes | yes | text on button |
-  | `url` | string | yes | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink or webview, it is mandatory, otherwise not |
-  | `intentId`| string  | yes | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
-  | `intentName`| string  | yes | no | name of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
-  | `openIn` | enums | yes | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory, otherwise not |
-  | `openStyle` | enums | yes | no | enums contain compact, tall, full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `type` | string  | yes | enums contain  enums contain hyperlink,webview and goToIntent|
+  | `text`| string  | yes | text on button |
+  | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink or webview, it is mandatory, otherwise not |
+  | `intentId`| string  | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
+  | `intentName`| string  | no | name of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
+  | `openIn` | enums | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory, otherwise not |
+  | `openStyle` | enums | no | enums contain compact, tall, full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
 
 
 #### CollectFormValueResponse
   CollectFormValueResponse is represented as simple flat JSON objects with the following keys:  
   
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `text` | string  | yes | yes | text on the button which can be clicked to open a webview to collection information|
-  | `message` | string  | yes | yes | message of the response which will be displayed upon the button|
-  | `ifNeedConfirm` | bool  | yes | yes | whether need to confirm after webview submit|
-  | `fields` | an array of [Field](#field)  | yes | yes | fields displayed on webview|
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `text` | string  | yes | text on the button which can be clicked to open a webview to collection information|
+  | `message` | string  | yes | message of the response which will be displayed upon the button|
+  | `ifNeedConfirm` | bool  | yes | whether need to confirm after webview submit|
+  | `fields` | an array of [Field](#field)  | yes | fields displayed on webview|
 
 #### Field
 
   Field is represented as simple flat JSON objects with the following keys:  
   
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `name` | string  | yes | yes | name of the field|
-  | `value` | string  | yes | yes | value of the field|
-  | `type` | string  | yes | yes | field type, contains text, textArea, radio, checkBox, dropDownList, checkBoxList |
-  | `ifRequired` | bool  | yes | yes | when it is true, visitor have to input a value in the field before submit |
-  | `ifMasked` | bool  | yes | yes | when it is true, information collected will replaced by * in chat log for security |
-  | `options` | an array of string  | yes | no | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose. When the type is dropDownList or checkBoxList, it is mandatory, otherwise not |
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `name` | string  | yes | name of the field|
+  | `value` | string  | yes | value of the field|
+  | `type` | string  | yes | field type, contains text, textArea, radio, checkBox, dropDownList, checkBoxList |
+  | `ifRequired` | bool  | yes | when it is true, visitor have to input a value in the field before submit |
+  | `ifMasked` | bool  | yes | when it is true, information collected will replaced by * in chat log for security |
+  | `options` | an array of string  | no | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose. When the type is dropDownList or checkBoxList, it is mandatory, otherwise not |
 
 #### Webhook Request Data
 
   Webhook Request is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `chatId` | string | yes | yes | | id of the chat |
-  | `campaignId` | int | yes | yes | id of the campaign in comm100 live chat |
-  | `question` | string | yes | no | the last question that Bot receives from visitor. when the event type is visitor.question.asked, it is mandatory, otherwise not |
-  | `intentId` | int | yes | no | when the event type is form.collected or intent.link.clicked or visitor.location.shared, it is mandatory, otherwise not|
-  | `formValues` | array of [Form Values](#form-values) | yes | no | when the event type is form.collected, it is mandatory, otherwise not |
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `chatId` | string | yes | | id of the chat |
+  | `campaignId` | int | yes | id of the campaign in comm100 live chat |
+  | `question` | string | no | the last question that Bot receives from visitor. when the event type is visitor.question.asked, it is mandatory, otherwise not |
+  | `intentId` | int | no | when the event type is form.collected or intent.link.clicked or visitor.location.shared, it is mandatory, otherwise not|
+  | `formValues` | array of [Form Values](#form-values) | no | when the event type is form.collected, it is mandatory, otherwise not |
   
 #### Form Values
 
   Form Values is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | :-: | :-: | - | 
-  | `lable` | string  | yes | yes | lable of the form item |
-  | `value` | string  | yes | yes | value of the form item |
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `lable` | string  | yes | lable of the form item |
+  | `value` | string  | yes | value of the form item |
   
 #### VisitorInfo
 
   Visitor info is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `id` | integer | yes | yes | id of the visitor |
-  | `name` | string | yes | yes | name of the visitor |
-  | `language` | string | yes | yes | language |
-  | `email` | string | yes | yes | email of the visitor |
-  | `phone` | string | yes | yes | phone of the visitor |
-  | `longitude` | float | yes | no | longitude of the visitor location |
-  | `latitude` | float | yes | no | latitude of the visitor location |
-  | `country` | string | yes | yes | the country of the visitor |
-  | `state` | string | yes | yes | state of the visitor |
-  | `city` | string | yes | yes | the city of the visitor |
-  | `company` | string | yes | yes | the company of the visitor |
-  | `department` | int | yes | yes | department of the visitor |
-  | `browser` | string | yes | yes | visitor use browser type |
-  | `current_browsing` | string | yes | yes | page of the current browsing |
-  | `referrer_url` | string | yes | yes | referrer url |
-  | `landing_page` | string | yes | yes | the page of login |
-  | `search_engine` | string | yes | yes | search engine |
-  | `keywords` | string | yes | yes | search engine key |
-  | `operating_system` | string | yes | yes | operating system of the visitor |
-  | `ip` | string | yes | yes | ip of the visitor |
-  | `flash_version` | string | yes | yes | version of the flash |
-  | `product_service` | string | yes | yes | product service |
-  | `screen_resolution` | string | yes | yes | screen resolution |
-  | `time_zone` | string | yes | yes | time zone of the visitor |
-  | `first_visit_time` | string | yes | yes | the time of first visit |
-  | `visit_time` | string | yes | yes | time of the visitor |
-  | `visits` | integer | yes | yes | count of the visited |
-  | `chats` | integer | yes | yes | count of chat |
-  | `page_views` | integer | yes | yes | count of the visited |
-  | `status` | string | yes | yes | status of the visitor |
-  | `custom_fields` | [CustomFields](#customfields) | yes | yes | an array of custom fields |
-  | `custom_variables` | [CustomVariables](#customvariables) | yes | yes | an array of custom variables |
+  | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `id` | integer | yes | id of the visitor |
+  | `name` | string | yes | name of the visitor |
+  | `language` | string | yes | language |
+  | `email` | string | yes | email of the visitor |
+  | `phone` | string | yes | phone of the visitor |
+  | `longitude` | float | no | longitude of the visitor location |
+  | `latitude` | float | no | latitude of the visitor location |
+  | `country` | string | yes | the country of the visitor |
+  | `state` | string | yes | state of the visitor |
+  | `city` | string | yes | the city of the visitor |
+  | `company` | string | yes | the company of the visitor |
+  | `department` | int | yes | department of the visitor |
+  | `browser` | string | yes | visitor use browser type |
+  | `current_browsing` | string | yes | page of the current browsing |
+  | `referrer_url` | string | yes | referrer url |
+  | `landing_page` | string | yes | the page of login |
+  | `search_engine` | string | yes | search engine |
+  | `keywords` | string | yes | search engine key |
+  | `operating_system` | string | yes | operating system of the visitor |
+  | `ip` | string | yes | ip of the visitor |
+  | `flash_version` | string | yes | version of the flash |
+  | `product_service` | string | yes | product service |
+  | `screen_resolution` | string | yes | screen resolution |
+  | `time_zone` | string | yes | time zone of the visitor |
+  | `first_visit_time` | string | yes | the time of first visit |
+  | `visit_time` | string | yes | time of the visitor |
+  | `visits` | integer | yes | count of the visited |
+  | `chats` | integer | yes | count of chat |
+  | `page_views` | integer | yes | count of the visited |
+  | `status` | string | yes | status of the visitor |
+  | `custom_fields` | [CustomFields](#customfields) | yes | an array of custom fields |
+  | `custom_variables` | [CustomVariables](#customvariables) | yes | an array of custom variables |
 
 #### CustomFields
 
@@ -216,18 +216,18 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Read-only | Mandatory | Description |    
   | - | - | - | - | - | 
-  | `id` | integer  | yes | yes | id of the field |
-  | `name` | string  | yes | yes | name of the field |
-  | `value` | string  | yes | yes | value of the field |
+  | `id` | integer  | yes | id of the field |
+  | `name` | string  | yes | name of the field |
+  | `value` | string  | yes | value of the field |
 
 #### CustomVariables
 
   Custom variables is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
-  | `name` | string  | yes | yes | name of the variable |
-  | `value` | string  | yes | yes | value of the variable |
+  | - | - | - | - | 
+  | `name` | string  | yes | name of the variable |
+  | `value` | string  | yes | value of the variable |
 
   #### Response Sample Json
   ```json
