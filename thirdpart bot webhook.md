@@ -2,101 +2,89 @@
 
 ## Third-Party Bot Webhook Event
 
-  - Bot Greeting Message Requested
+ ### Bot Greeting Message Requested
 
 When we received a response whose event type is bot.greetingMessage.requested, we will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
-  - Webhook Request Data Format for Greeting Message Requested Event
+  #### Webhook Request Data Format for Greeting Message Requested Event
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
 
-  - Webhook Response Data Format for Greeting Message Requested Event
+ #### Webhook Response Data Format for Greeting Message Requested Event
 
 |Name| Type    |Mandatory | Description     | 
 | - | - | - | - | 
 |`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
 |`content` | object | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)|
   
-  - Visitor Question Asked Event
+  ### Visitor Question Asked Event
 
 When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
 You need process this message and information within this webhook using your own bot engine and give us a formatted 
 response so that we can give visitor an answer base on your response through live chat. 
 
-  - Webhook Request Data Format for Visitor Question Asked Event
+  #### Webhook Request Data Format for Visitor Question Asked Event
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `question` | string | no | the last question that Bot receives from visitor. when the event type is visitor.question.asked, it is mandatory, otherwise not |
+  | `question` | string | yes | the last question that Bot receives from visitor.  |
 
-  - Webhook Response Data Format for Visitor Question Asked Event
+  #### Webhook Response Data Format for Visitor Question Asked Event
 
-|Name| Type    |Mandatory | Description     | 
-| - | - | - | - | 
-|`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
-|`content` | object | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)|
+The same as Bot Greeting Message Requested Event
   
-  - Intent Link Clicked Event
+  ### Intent Link Clicked Event
 
 If the answer we give to visitor contains link/button/quickreply which point to an intent, when visitor click this link/button/quickreply, we will pass this action to this webhook with intent id and other information we defined. You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
-  - Webhook Request Data Format for Intent Link Clicked Event
+  #### Webhook Request Data Format for Intent Link Clicked Event
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `question` | string | no | the last question that Bot receives from visitor. when the event type is visitor.question.asked, it is mandatory, otherwise not |
+  | `intentId` | int | yes | the last intent that visitor clicked. |
 
-  - Webhook Response Data Format for Intent Link Clicked Event
+  #### Webhook Response Data Format for Intent Link Clicked Event
 
-|Name| Type    |Mandatory | Description     | 
-| - | - | - | - | 
-|`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
-|`content` | object | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)|
+The same as Bot Greeting Message Requested Event
   
-  - Visitor Location Shared Event
+  ### Visitor Location Shared Event
 
 When we received a response whose event type is visitor.location.shared, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on nformation we provided through this webhook.
 
-  - Webhook Request Data Format for Visitor Location Shared Event
+  #### Webhook Request Data Format for Visitor Location Shared Event
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `question` | string | no | the last question that Bot receives from visitor. when the event type is visitor.question.asked, it is mandatory, otherwise not |
+  | `intentId` | int | yes |  the last intent that required visitor location. |
 
-  - Webhook Response Data Format for Visitor Location Shared Event
+  #### Webhook Response Data Format for Visitor Location Shared Event
 
-|Name| Type    |Mandatory | Description     | 
-| - | - | - | - | 
-|`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
-|`content` | object | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)|
+The same as Bot Greeting Message Requested Event
   
-  - Form Collected Event
+  ### Form Collected Event
 
 When we received a response whose event type is form.collected, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
 
-  - Webhook Request Data Format for Form Collected Event
+  #### Webhook Request Data Format for Form Collected Event
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `question` | string | no | the last question that Bot receives from visitor. when the event type is visitor.question.asked, it is mandatory, otherwise not |
+  | `formValues` | array of [Form Values](#form-values) | yes |  |
 
-  - Webhook Response Data Format for Form Collected Event
+  #### Webhook Response Data Format for Form Collected Event
 
-|Name| Type    |Mandatory | Description     | 
-| - | - | - | - | 
-|`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
-|`content` | object | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)|
+The same as Bot Greeting Message Requested Event
   
 
 ### Request and Response Data of Third-Party Bot webhook 
