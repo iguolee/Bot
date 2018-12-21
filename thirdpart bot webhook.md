@@ -278,7 +278,7 @@ Response is represented as simple flat json objects with the following keys:
 
   Custom fields is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |    
+  | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `id` | integer  | yes | id of the field |
   | `name` | string  | yes | name of the field |
@@ -288,7 +288,7 @@ Response is represented as simple flat json objects with the following keys:
 
   Custom variables is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |    
+  | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `name` | string  | yes | name of the variable |
   | `value` | string  | yes | value of the variable |
