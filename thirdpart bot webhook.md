@@ -200,7 +200,7 @@ Response is represented as simple flat json objects with the following keys:
   | - | - | - | - | 
   | `text` | string  | yes | text on the button which can be clicked to open a webview to collection information|
   | `message` | string  | yes | message of the response which will be displayed upon the button|
-  | `ifNeedConfirm` | bool  | yes | whether need to confirm after webview submit|
+  | `ifNeedConfirm` | bool  | yes | whether need the visitor to double confirm the form field values |
   | `fields` | array of [Field](#field)  | yes | fields displayed on webview|
 
 #### Field
