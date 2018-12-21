@@ -98,7 +98,7 @@ When we received a response whose event type is form.collected, we will display 
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `responseId` | string | yes | the response that contains the intent which required collect information by form. |
-  | `formValues` | array of [Form Values](#form-values) | yes |  |
+  | `formValues` | array of [Field Value](#form-value) | yes |  |
 
   #### Response Data Format
 
@@ -111,8 +111,16 @@ Response is represented as simple flat json objects with the following keys:
 
 |Name| Type    |Mandatory | Description     | 
 | - | - | - | - | 
+| `id` | string | no | id of the response |
 |`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
-|`content` | object | yes |response's content. when type is text, it represents [TextResponse](#textresponse);when type is image ,it represents [ImageResponse](#imageresponse);when type is video, it represents [VideoResponse](#videoresponse); when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse); when type is button, it represents [ButtonResponse](#buttonresponse); when type is location, it should be null; when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
+|`content` | object | yes |response's content. 
+when type is text, it represents [TextResponse](#textresponse);
+when type is image ,it represents [ImageResponse](#imageresponse);
+when type is video, it represents [VideoResponse](#videoresponse); 
+when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse);
+when type is button, it represents [ButtonResponse](#buttonresponse);
+when type is location, it should be null;
+when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
 
 #### TextResponse
   TextResponse is represented as simple flat JSON objects with the following keys:
@@ -199,7 +207,7 @@ Response is represented as simple flat json objects with the following keys:
   | `text` | string  | yes | text on the button which can be clicked to open a webview to collection information|
   | `message` | string  | yes | message of the response which will be displayed upon the button|
   | `ifNeedConfirm` | bool  | yes | whether need to confirm after webview submit|
-  | `fields` | an array of [Field](#field)  | yes | fields displayed on webview|
+  | `fields` | array of [Field](#field)  | yes | fields displayed on webview|
 
 #### Field
 
@@ -208,31 +216,18 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `name` | string  | yes | name of the field|
-  | `value` | string  | yes | value of the field|
   | `type` | string  | yes | field type, contains text, textArea, radio, checkBox, dropDownList, checkBoxList |
   | `ifRequired` | bool  | yes | when it is true, visitor have to input a value in the field before submit |
   | `ifMasked` | bool  | yes | when it is true, information collected will replaced by * in chat log for security |
   | `options` | an array of string  | no | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose. When the type is dropDownList or checkBoxList, it is mandatory, otherwise not |
+ 
+#### Field Value
 
-#### Webhook Request Data
-
-  Webhook Request is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Mandatory | Description |    
-  | - | - | - | - | 
-  | `chatId` | string | yes | | id of the chat |
-  | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `question` | string | no | the last question that Bot receives from visitor. when the event type is visitor.question.asked, it is mandatory, otherwise not |
-  | `intentId` | int | no | when the event type is form.collected or intent.link.clicked or visitor.location.shared, it is mandatory, otherwise not|
-  | `formValues` | array of [Form Values](#form-values) | no | when the event type is form.collected, it is mandatory, otherwise not |
-  
-#### Form Values
-
-  Form Values is represented as simple flat JSON objects with the following keys:  
+  Field Value is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `lable` | string  | yes | lable of the form item |
+  | `name` | string  | yes | lable of the form item |
   | `value` | string  | yes | value of the form item |
   
 #### VisitorInfo
