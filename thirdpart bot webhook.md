@@ -279,7 +279,7 @@ Response is represented as simple flat json objects with the following keys:
   Custom fields is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |    
-  | - | - | - | - | - | 
+  | - | - | - | - | 
   | `id` | integer  | yes | id of the field |
   | `name` | string  | yes | name of the field |
   | `value` | string  | yes | value of the field |
