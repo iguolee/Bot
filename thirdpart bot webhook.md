@@ -113,13 +113,7 @@ Response is represented as simple flat json objects with the following keys:
 | - | - | - | - | 
 | `id` | string | no | id of the response |
 |`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
-|`content` | object | yes |response's content.<br/>when type is text, it represents [TextResponse](#textresponse);
-when type is image ,it represents [ImageResponse](#imageresponse);
-when type is video, it represents [VideoResponse](#videoresponse); 
-when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse);
-when type is button, it represents [ButtonResponse](#buttonresponse);
-when type is location, it should be null;
-when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
+|`content` | object | yes |response's content.<br/>when type is text, it represents [TextResponse](#textresponse);<br/>when type is image ,it represents [ImageResponse](#imageresponse);<br/>when type is video, it represents [VideoResponse](#videoresponse);<br/>when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse);<br/>when type is button, it represents [ButtonResponse](#buttonresponse);<br/>when type is location, it should be null;<br/>when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
 
 #### TextResponse
   TextResponse is represented as simple flat JSON objects with the following keys:
