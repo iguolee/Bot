@@ -21,6 +21,7 @@ When we received a response whose event type is bot.greetingMessage.requested, w
 |Name| Type    |Mandatory | Description     | 
 | - | - | - | - | 
 |`botAnswer` | array of [Response](#response) | yes |   | 
+
 Here is a sample of response json: [sample](#response-sample-json)
 
 ### Visitor Question Asked Event
@@ -242,25 +243,25 @@ Response is represented as simple flat json objects with the following keys:
   | `company` | string | yes | the company of the visitor |
   | `department` | int | yes | department of the visitor |
   | `browser` | string | yes | visitor use browser type |
-  | `current_browsing` | string | yes | page of the current browsing |
-  | `referrer_url` | string | yes | referrer url |
-  | `landing_page` | string | yes | the page of login |
-  | `search_engine` | string | yes | search engine |
+  | `currentBrowsing` | string | yes | page of the current browsing |
+  | `referrerUrl` | string | yes | referrer url |
+  | `landingPage` | string | yes | the page of login |
+  | `searchEngine` | string | yes | search engine |
   | `keywords` | string | yes | search engine key |
-  | `operating_system` | string | yes | operating system of the visitor |
+  | `operatingSystem` | string | yes | operating system of the visitor |
   | `ip` | string | yes | ip of the visitor |
-  | `flash_version` | string | yes | version of the flash |
-  | `product_service` | string | yes | product service |
-  | `screen_resolution` | string | yes | screen resolution |
-  | `time_zone` | string | yes | time zone of the visitor |
-  | `first_visit_time` | string | yes | the time of first visit |
-  | `visit_time` | string | yes | time of the visitor |
+  | `flashVersion` | string | yes | version of the flash |
+  | `productService` | string | yes | product service |
+  | `screenResolution` | string | yes | screen resolution |
+  | `timeZone` | string | yes | time zone of the visitor |
+  | `firstVisitTime` | string | yes | the time of first visit |
+  | `visitTime` | string | yes | time of the visitor |
   | `visits` | integer | yes | count of the visited |
   | `chats` | integer | yes | count of chat |
-  | `page_views` | integer | yes | count of the visited |
+  | `pageViews` | integer | yes | count of the visited |
   | `status` | string | yes | status of the visitor |
-  | `custom_fields` | [CustomFields](#customfields) | yes | an array of custom fields |
-  | `custom_variables` | [CustomVariables](#customvariables) | yes | an array of custom variables |
+  | `customFields` | [CustomFields](#customfields) | yes | an array of custom fields |
+  | `customVariables` | [CustomVariables](#customvariables) | yes | an array of custom variables |
 
 #### CustomFields
 
@@ -285,12 +286,14 @@ Response is represented as simple flat json objects with the following keys:
   ```json
    [
         {
+            "id": "id1",
             "type": "text",
             "content": {
                 "message": "this is a plain message"
             }
         },
         {
+            "id": "id2",
             "type": "text",
             "content": {
                 "message": "this is a web link message",
@@ -305,6 +308,7 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
+            "id": "id3",
             "type": "text",
             "content": {
                 "message": "this is a go to intent message",
@@ -318,6 +322,7 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
+            "id": "id4",
             "type": "image",
             "content": {
                 "name": "test-image.jpg",
@@ -325,12 +330,14 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
+            "id": "id5",
             "type": "video",
             "content": {
                 "url": "www.test.com/test-video.jpg"
             }
         },
         {
+            "id": "id6",
             "type": "quickreply",
             "content": {
                 "message": "this is a quick reply response",
@@ -353,6 +360,7 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
+            "id": "id7",
             "type": "button",
             "content": {
                 "message": "this is a button response",
@@ -379,10 +387,12 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
+            "id": "id8",
             "type": "location",
             "content": null
         },
         {
+            "id": "id9",
             "type": "form",
             "content": {
                 "text": "book ticket",
