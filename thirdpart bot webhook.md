@@ -414,9 +414,9 @@ Response is represented as simple flat json objects with the following keys:
                         "ifRequired": true,
                         "ifMasked": true,
                         "options": [
-                            "value": -1,
-                            "value": -2,
-                            "value": -3
+                            "value": "field-1-value",
+                            "value": "field-2-value",
+                            "value": -"field-3-value"
                         ]
                     }
                 ]
