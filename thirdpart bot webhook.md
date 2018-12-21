@@ -6,14 +6,17 @@
 
 When we received a response whose event type is bot.greetingMessage.requested, we will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
-  #### Webhook Request Data Format for Greeting Message Requested Event
+  #### Request Data Format
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `chatId` | string | yes | | id of the chat |
+  | `uniqueId` | string | yes | it is the unique id of the event. |
+  | `time` | string | yes | event happens time |
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
+  | `chatId` | string | yes | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
 
- #### Webhook Response Data Format for Greeting Message Requested Event
+ #### Response Data Format
 
 |Name| Type    |Mandatory | Description     | 
 | - | - | - | - | 
