@@ -416,7 +416,7 @@ Response is represented as simple flat json objects with the following keys:
                         "options": [
                             "value": "field-1-value",
                             "value": "field-2-value",
-                            "value": -"field-3-value"
+                            "value": "field-3-value"
                         ]
                     }
                 ]
