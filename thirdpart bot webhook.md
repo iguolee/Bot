@@ -398,7 +398,7 @@ Response is represented as simple flat json objects with the following keys:
             "content": {
                 "text": "book ticket",
                 "message": "please fill the form below",
-                "ifNeedConfirm": "true",
+                "ifNeedConfirm": true,
                 "fields": [
                     {
                         "type": "text",// text, textArea, radio, checkBox, dropDownList or checkBoxList
