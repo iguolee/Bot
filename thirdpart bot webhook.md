@@ -210,6 +210,7 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `name` | string  | yes | name of the field|
+  | `value` | string  | yes | value of the field item |
   | `type` | string  | yes | field type, contains text, textArea, radio, checkBox, dropDownList, checkBoxList |
   | `ifRequired` | bool  | yes | when it is true, visitor have to input a value in the field before submit |
   | `ifMasked` | bool  | yes | when it is true, information collected will replaced by * in chat log for security |
@@ -221,8 +222,8 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `name` | string  | yes | lable of the form item |
-  | `value` | string  | yes | value of the form item |
+  | `name` | string  | yes | lable of the form field item |
+  | `value` | string  | yes | value of the form field item |
   
 #### VisitorInfo
 
