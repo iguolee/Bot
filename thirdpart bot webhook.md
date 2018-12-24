@@ -191,7 +191,7 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `message` | string  | yes | message of the response which will be displayed above the button|
-  | `buttonText` | string  | yes | text on the button which can be clicked to open a webview to collection information|
+  | `text` | string  | yes | text on the button which can be clicked to open a webview to collection information|
   | `ifNeedConfirm` | bool  | yes | whether need the visitor to double confirm the form field values |
   | `fields` | array of [Field](#field)  | yes | fields displayed on webview|
 
@@ -282,14 +282,14 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id1",
             "type": "text",
             "content": {
-                "text": "this is a plain message"
+                "message": "this is a plain message"
             }
         },
         {
             "id": "id2",
             "type": "text",
             "content": {
-                "text": "this is a web link message",
+                "message": "this is a web link message",
                 "link": [{
                     "type": "hypelink",// hypelink or goToIntent.
                     "startPosition": 10,
@@ -304,13 +304,13 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id3",
             "type": "text",
             "content": {
-                "text": "this is a go to intent message",
+                "message": "this is a go to intent message",
                 "link": [{
                     "type": "goToIntent",
                     "startPosition": 10,
                     "endPosition": 17,
                     "intentId": "test-intent-id",
-                    "intentName": "test-intent-name"
+                    "displayText": "test-displayText"
                 }]
             }
         },
@@ -318,6 +318,7 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id4",
             "type": "image",
             "content": {
+                "description": "description of the image",
                 "url": "www.test.com/test-image.jpg"
             }
         },
@@ -332,21 +333,16 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id6",
             "type": "quickreply",
             "content": {
-                "text": "this is a quick reply response",
+                "message": "this is a quick reply response",
                 "items": [
                     {
                         "type": "goToIntent",// goToIntent, contactAgent or text.
                         "name": "click to trigger test-intent-name",
-                        "intentId": "test-intent-id",
-                        "intentName": "test-intent-name"
+                        "intentId": "test-intent-id"
                     },
                     {
                         "type": "contactAgent",
                         "name": "click to contact agent"
-                    },
-                    {
-                        "type": "text",
-                        "name": "click to send this text"
                     }
                 ]
             }
@@ -355,13 +351,12 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id7",
             "type": "button",
             "content": {
-                "text": "this is a button response",
+                "message": "this is a button response",
                 "items": [
                     {
                         "type": "goToIntent",// goToIntent, hyperlink or webview.
                         "text": "click to trigger test-intent-name",
-                        "intentId": "test-intent-id",
-                        "intentName": "test-intent-name"
+                        "intentId": "test-intent-id"
                     },
                     {
                         "type": "hyperlink",
@@ -373,7 +368,7 @@ Response is represented as simple flat json objects with the following keys:
                         "type": "webview",
                         "text": "click to open this url in web view",
                         "url": "www.test.com",
-                        "openStyle": "full"
+                        "webviewOpenStyle": "full"
                     }
                 ]
             }
