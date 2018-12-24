@@ -2,15 +2,15 @@
 
 ## Third-Party Bot Webhook Event
 
- ### Chat Started
+ ### Chat Joined
 
-When we received a response whose event type is chat.started, we will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
+When we received a response whose event type is chatJoined, we will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
   #### Request Data Format
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
   | `chatId` | string | yes | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
@@ -33,7 +33,7 @@ response so that we can give visitor an answer base on your response through liv
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `question` | string | yes | the question that Bot received from visitor.  |
@@ -51,7 +51,7 @@ If the answer we give to visitor contains link/button/quickreply which point to 
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `responseId` | string | yes | id of the response that contains the intent which clicked by the visitor. |
@@ -64,13 +64,13 @@ The same as Chat Started Event
   
   ### Visitor Location Shared Event
 
-When we received a response whose event type is visitor.location.shared, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on nformation we provided through this webhook.
+When we received a response whose event type is locationShared, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on nformation we provided through this webhook.
 
   #### Request Data Format
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `responseId` | string | yes | id of the response that contains the intent which required visitor location. |
@@ -83,13 +83,13 @@ The same as Chat Started Event
   
   ### Form Collected Event
 
-When we received a response whose event type is form.collected, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
+When we received a response whose event type is formSubmitted, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
 
   #### Request Data Format
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `responseId` | string | yes | id of the response that contains the intent which required collect information by form. |
