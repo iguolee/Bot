@@ -138,7 +138,7 @@ Response is represented as simple flat json objects with the following keys:
   | `startPosition` | int | yes | start index of text which contains link info |
   | `endPosition` | int | yes | end index of text which contains link info |
   | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink, it is mandatory, otherwise not |
-  | `intentId` | string| no | id of intent that you want user to click. When the type is goToIntent, it is mandatory, otherwise not  |
+  | `intentId` | string| no | id of the intent in the intent link. When the type is goToIntent, it is mandatory, otherwise not  |
   | `displayText` | string | no | name of intent that you want user to click.. When the type is goToIntent, it is mandatory, otherwise not |
   | `openIn` | enums | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is goToIntent, it is mandatory, otherwise not |
 
@@ -147,7 +147,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `url` | string  | yes | url of the video |
+  | `url` | string  | yes | url of the video/image and so on |
 
 #### QuickReplyResponse
   QuickReplyResponse is represented as simple flat JSON objects with the following keys:
@@ -163,9 +163,8 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `type` | string  | yes | enums contain  goToIntent, contactAgent, text|
-  | `name`| string  | yes | text on quick reply |
-  | `intentId`| string  | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
-  | `intentName`| string  | no  | name of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |  
+  | `text`| string  | yes | text on quick reply |
+  | `intentId`| string  | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |  
 
 #### ButtonResponse
   ButtonResponse is represented as simple flat JSON objects with the following keys:  
@@ -186,7 +185,7 @@ Response is represented as simple flat json objects with the following keys:
   | `intentId`| string  | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
   | `intentName`| string  | no | name of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
   | `openIn` | enums | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory, otherwise not |
-  | `openStyle` | enums | no | enums contain compact, tall, full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
+  | `webviewOpenStyle` | enums | no | enums contain compact, tall, full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
 
 
 #### CollectFormValueResponse
@@ -286,14 +285,14 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id1",
             "type": "text",
             "content": {
-                "message": "this is a plain message"
+                "text": "this is a plain message"
             }
         },
         {
             "id": "id2",
             "type": "text",
             "content": {
-                "message": "this is a web link message",
+                "text": "this is a web link message",
                 "link": [{
                     "type": "hypelink",// hypelink or goToIntent.
                     "startPosition": 10,
@@ -308,7 +307,7 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id3",
             "type": "text",
             "content": {
-                "message": "this is a go to intent message",
+                "text": "this is a go to intent message",
                 "link": [{
                     "type": "goToIntent",
                     "startPosition": 10,
@@ -337,7 +336,7 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id6",
             "type": "quickreply",
             "content": {
-                "message": "this is a quick reply response",
+                "text": "this is a quick reply response",
                 "items": [
                     {
                         "type": "goToIntent",// goToIntent, contactAgent or text.
@@ -360,7 +359,7 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id7",
             "type": "button",
             "content": {
-                "message": "this is a button response",
+                "text": "this is a button response",
                 "items": [
                     {
                         "type": "goToIntent",// goToIntent, hyperlink or webview.
