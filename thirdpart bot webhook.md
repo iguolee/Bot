@@ -13,7 +13,7 @@ When we received a response whose event type is chatJoined, we will pass this ac
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
   | `chatId` | string | yes | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables |
   
  #### Response Data Format
 
@@ -37,7 +37,7 @@ response so that we can give visitor an answer base on your response through liv
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `question` | string | yes | the question that Bot received from visitor.  |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables |
 
   #### Response Data Format
 
@@ -55,7 +55,7 @@ If the answer we give to visitor contains link/button/quickreply which point to 
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `intentId` | string | yes | the intent that visitor clicked. |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables |
 
   #### Response Data Format
 
@@ -73,7 +73,7 @@ When we received a response whose event type is locationShared, we will display 
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `intentId` | string | yes |  the intent that required visitor location. |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables and also the visitor location |
   
   #### Response Data Format
 
@@ -91,7 +91,7 @@ When we received a response whose event type is formSubmitted, we will display a
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `formValues` | array of [Field Value](#form-value) | yes |  |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables |
   
   #### Response Data Format
 
@@ -134,14 +134,14 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `description` | string  | yes | description of the image, it will be displayed as the alternative text of the image |
-  | `url` | string  | yes | url of the video, image and so on |
+  | `url` | string  | yes | url of the image |
 
 #### VideoResponse
   VideoResponse is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `url` | string  | yes | url of the video, image and so on |
+  | `url` | string  | yes | url of the video |
   
 #### QuickReplyResponse
   QuickReplyResponse is represented as simple flat JSON objects with the following keys:
@@ -149,7 +149,7 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `message` | string  | yes | message of the response|
-  | `items`| array of [QuickReplyItem](#quickreplyitem)  | yes | link information of the text|  
+  | `items`| array of [QuickReplyItem](#quickreplyitem)  | yes | |  
 
 #### QuickReplyItem
   QuickReplyItem is represented as simple flat JSON objects with the following keys: 
@@ -166,7 +166,7 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `message` | string  | yes | message of the response|
-  | `items`| array of [ButtonItem](#buttonItem)  | yes | link information of the text|  
+  | `items`| array of [ButtonItem](#buttonItem)  | yes |  |  
 
 #### ButtonItem
   ButtonItem is represented as simple flat JSON objects with the following keys:  
