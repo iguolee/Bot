@@ -54,7 +54,6 @@ If the answer we give to visitor contains link/button/quickreply which point to 
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `responseId` | string | yes | id of the response that contains the intent which clicked by the visitor. |
   | `intentId` | string | yes | the intent that visitor clicked. |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
 
@@ -73,7 +72,6 @@ When we received a response whose event type is locationShared, we will display 
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `responseId` | string | yes | id of the response that contains the intent which required visitor location. |
   | `intentId` | string | yes |  the intent that required visitor location. |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
   
@@ -92,7 +90,6 @@ When we received a response whose event type is formSubmitted, we will display a
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `responseId` | string | yes | id of the response that contains the intent which required collect information by form. |
   | `formValues` | array of [Field Value](#form-value) | yes |  |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
   
@@ -107,7 +104,6 @@ Response is represented as simple flat json objects with the following keys:
 
 |Name| Type    |Mandatory | Description     | 
 | - | - | - | - | 
-| `id` | string | no | id of the response |
 |`type` | string | yes |enums contain text,image,video, quickreply, button, location, form.  | 
 |`content` | object | yes |response's content.<br/>when type is text, it represents [TextResponse](#textresponse);<br/>when type is image ,it represents [ImageResponse](#imageresponse);<br/>when type is video, it represents [VideoResponse](#videoresponse);<br/>when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse);<br/>when type is button, it represents [ButtonResponse](#buttonresponse);<br/>when type is location, it should be null;<br/>when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
 
@@ -279,14 +275,12 @@ Response is represented as simple flat json objects with the following keys:
   ```json
    [
         {
-            "id": "id1",
             "type": "text",
             "content": {
                 "message": "this is a plain message"
             }
         },
         {
-            "id": "id2",
             "type": "text",
             "content": {
                 "message": "this is a web link message",
@@ -301,7 +295,6 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
-            "id": "id3",
             "type": "text",
             "content": {
                 "message": "this is a go to intent message",
@@ -315,7 +308,6 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
-            "id": "id4",
             "type": "image",
             "content": {
                 "description": "description of the image",
@@ -323,14 +315,12 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
-            "id": "id5",
             "type": "video",
             "content": {
                 "url": "www.test.com/test-video.jpg"
             }
         },
         {
-            "id": "id6",
             "type": "quickreply",
             "content": {
                 "message": "this is a quick reply response",
@@ -348,7 +338,6 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
-            "id": "id7",
             "type": "button",
             "content": {
                 "message": "this is a button response",
@@ -374,12 +363,10 @@ Response is represented as simple flat json objects with the following keys:
             }
         },
         {
-            "id": "id8",
             "type": "location",
             "content": null
         },
         {
-            "id": "id9",
             "type": "form",
             "content": {
                 "text": "book ticket",
