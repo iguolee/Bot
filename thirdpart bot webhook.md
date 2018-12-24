@@ -206,7 +206,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `name` | string  | yes | lable of the form field item |
+  | `label` | string  | yes | label of the form field item |
   | `value` | string  | yes | value of the form field item |
   
 #### VisitorInfo
@@ -310,7 +310,6 @@ Response is represented as simple flat json objects with the following keys:
             "id": "id4",
             "type": "image",
             "content": {
-                "name": "test-image.jpg",
                 "url": "www.test.com/test-image.jpg"
             }
         },
