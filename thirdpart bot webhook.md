@@ -36,7 +36,7 @@ response so that we can give visitor an answer base on your response through liv
   | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `question` | string | yes | the last question that Bot receives from visitor.  |
+  | `question` | string | yes | the question that Bot received from visitor.  |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
 
   #### Response Data Format
@@ -54,8 +54,8 @@ If the answer we give to visitor contains link/button/quickreply which point to 
   | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `responseId` | string | yes | the response that contains the intent which clicked by the visitor. |
-  | `intentId` | string | yes | the last intent that visitor clicked. |
+  | `responseId` | string | yes | id of the response that contains the intent which clicked by the visitor. |
+  | `intentId` | string | yes | the intent that visitor clicked. |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
 
   #### Response Data Format
@@ -73,8 +73,8 @@ When we received a response whose event type is visitor.location.shared, we will
   | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `responseId` | string | yes | the response that contains the intent which required visitor location. |
-  | `intentId` | string | yes |  the last intent that required visitor location. |
+  | `responseId` | string | yes | id of the response that contains the intent which required visitor location. |
+  | `intentId` | string | yes |  the intent that required visitor location. |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
   
   #### Response Data Format
@@ -92,7 +92,7 @@ When we received a response whose event type is form.collected, we will display 
   | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `responseId` | string | yes | the response that contains the intent which required collect information by form. |
+  | `responseId` | string | yes | id of the response that contains the intent which required collect information by form. |
   | `formValues` | array of [Field Value](#form-value) | yes |  |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
   
