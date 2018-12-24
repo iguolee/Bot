@@ -10,8 +10,6 @@ When we received a response whose event type is chat.started, we will pass this 
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `id` | string | yes | it is the unique id of the event. |
-  | `time` | string | yes | event happens time |
   | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
@@ -35,8 +33,6 @@ response so that we can give visitor an answer base on your response through liv
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `id` | string | yes | it is the unique id of the event. |
-  | `time` | string | yes | event happens time |
   | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
@@ -55,8 +51,6 @@ If the answer we give to visitor contains link/button/quickreply which point to 
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `id` | string | yes | it is the unique id of the event. |
-  | `time` | string | yes | event happens time |
   | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
@@ -76,8 +70,6 @@ When we received a response whose event type is visitor.location.shared, we will
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `id` | string | yes | it is the unique id of the event. |
-  | `time` | string | yes | event happens time |
   | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
@@ -97,8 +89,6 @@ When we received a response whose event type is form.collected, we will display 
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `id` | string | yes | it is the unique id of the event. |
-  | `time` | string | yes | event happens time |
   | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
