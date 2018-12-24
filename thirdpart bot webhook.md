@@ -122,7 +122,7 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `message` | string  | yes | text of the response |
-  | [link](#link) | object  | yes | links in the text |  
+  | [links](#link) | array of [link](#link)  | yes | links in the text |  
 
 #### Link
   Link is represented as simple flat JSON objects with the following keys:
@@ -298,14 +298,14 @@ Response is represented as simple flat json objects with the following keys:
             "type": "text",
             "content": {
                 "message": "this is a web link message",
-                "link": {
+                "link": [{
                     "type": "hypelink",// hypelink or goToIntent.
                     "startPosition": 10,
                     "endPosition": 17,
                     "ifPushPage": true,
                     "url": "www.test.com",
                     "openIn": "currentWindow"// currentWindow, sideWindow or newWindow.
-                }
+                }]
             }
         },
         {
@@ -313,13 +313,13 @@ Response is represented as simple flat json objects with the following keys:
             "type": "text",
             "content": {
                 "message": "this is a go to intent message",
-                "link": {
+                "link": [{
                     "type": "goToIntent",
                     "startPosition": 10,
                     "endPosition": 17,
                     "intentId": "test-intent-id",
                     "intentName": "test-intent-name"
-                }
+                }]
             }
         },
         {
