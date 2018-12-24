@@ -2,9 +2,9 @@
 
 ## Third-Party Bot Webhook Event
 
- ### Bot Greeting Message Requested
+ ### Chat Started
 
-When we received a response whose event type is bot.greetingMessage.requested, we will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
+When we received a response whose event type is chat.started, we will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
   #### Request Data Format
 
@@ -12,7 +12,7 @@ When we received a response whose event type is bot.greetingMessage.requested, w
   | - | - | - | - | 
   | `id` | string | yes | it is the unique id of the event. |
   | `time` | string | yes | event happens time |
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes |  |
@@ -37,7 +37,7 @@ response so that we can give visitor an answer base on your response through liv
   | - | - | - | - | 
   | `id` | string | yes | it is the unique id of the event. |
   | `time` | string | yes | event happens time |
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `question` | string | yes | the last question that Bot receives from visitor.  |
@@ -45,7 +45,7 @@ response so that we can give visitor an answer base on your response through liv
 
   #### Response Data Format
 
-The same as Bot Greeting Message Requested Event
+The same as Chat Started Event
   
   ### Intent Link Clicked Event
 
@@ -57,7 +57,7 @@ If the answer we give to visitor contains link/button/quickreply which point to 
   | - | - | - | - | 
   | `id` | string | yes | it is the unique id of the event. |
   | `time` | string | yes | event happens time |
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `responseId` | string | yes | the response that contains the intent which clicked by the visitor. |
@@ -66,7 +66,7 @@ If the answer we give to visitor contains link/button/quickreply which point to 
 
   #### Response Data Format
 
-The same as Bot Greeting Message Requested Event
+The same as Chat Started Event
   
   ### Visitor Location Shared Event
 
@@ -78,7 +78,7 @@ When we received a response whose event type is visitor.location.shared, we will
   | - | - | - | - | 
   | `id` | string | yes | it is the unique id of the event. |
   | `time` | string | yes | event happens time |
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `responseId` | string | yes | the response that contains the intent which required visitor location. |
@@ -87,7 +87,7 @@ When we received a response whose event type is visitor.location.shared, we will
   
   #### Response Data Format
 
-The same as Bot Greeting Message Requested Event
+The same as Chat Started Event
   
   ### Form Collected Event
 
@@ -99,7 +99,7 @@ When we received a response whose event type is form.collected, we will display 
   | - | - | - | - | 
   | `id` | string | yes | it is the unique id of the event. |
   | `time` | string | yes | event happens time |
-  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.link.clicked / visitor.location.shared / form.collected / bot.greetingMessage.requested |   
+  | `event` | string | yes | it is a enum value with options: visitor.question.asked / intent.clicked / visitor.location.shared / form.collected / chat.started |   
   | `chatId` | string | yes | | id of the chat |
   | `campaignId` | int | yes | id of the campaign in comm100 live chat |
   | `responseId` | string | yes | the response that contains the intent which required collect information by form. |
@@ -108,7 +108,7 @@ When we received a response whose event type is form.collected, we will display 
   
   #### Response Data Format
 
-The same as Bot Greeting Message Requested Event
+The same as Chat Started Event
   
 ### Third-Party Bot webhook Related Object Json Format
 
@@ -126,7 +126,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `message` | string  | yes | text of the response |
+  | `text` | string  | yes | text of the response |
   | [links](#link) | array of [link](#link)  | yes | links in the text |  
 
 #### Link
@@ -139,20 +139,11 @@ Response is represented as simple flat json objects with the following keys:
   | `endPosition` | int | yes | end index of text which contains link info |
   | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink, it is mandatory, otherwise not |
   | `intentId` | string| no | id of intent that you want user to click. When the type is goToIntent, it is mandatory, otherwise not  |
-  | `intentName` | string | no | name of intent that you want user to click.. When the type is goToIntent, it is mandatory, otherwise not |
+  | `displayText` | string | no | name of intent that you want user to click.. When the type is goToIntent, it is mandatory, otherwise not |
   | `openIn` | enums | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is goToIntent, it is mandatory, otherwise not |
 
-#### ImageResponse
-
-  ImageResponse is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Mandatory | Description |    
-  | - | - | - | - | 
-  | `name` | string  | yes | name of the image |
-  | `url` | string  | yes | url of the image |  
-
-#### VideoResponse
-  VideoResponse is represented as simple flat JSON objects with the following keys:  
+#### UrlResponse
+  UrlResponse is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
@@ -163,7 +154,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `message` | string  | yes | text of the response|
+  | `text` | string  | yes | text of the response|
   | `items`| array of [QuickReplyItem](#quickreplyitem)  | yes | link information of the text|  
 
 #### QuickReplyItem
@@ -181,7 +172,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `message` | string  | yes | text of the response|
+  | `text` | string  | yes | text of the response|
   | `items`| array of [ButtonItem](#buttonItem)  | yes | link information of the text|  
 
 #### ButtonItem
