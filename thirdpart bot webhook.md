@@ -116,7 +116,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `text` | string  | yes | text of the response |
+  | `message` | string  | yes | message of the response |
   | [links](#link) | array of [link](#link)  | yes | links in the text |  
 
 #### Link
@@ -144,7 +144,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `text` | string  | yes | text of the response|
+  | `message` | string  | yes | message of the response|
   | `items`| array of [QuickReplyItem](#quickreplyitem)  | yes | link information of the text|  
 
 #### QuickReplyItem
@@ -161,7 +161,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `text` | string  | yes | text of the response|
+  | `message` | string  | yes | message of the response|
   | `items`| array of [ButtonItem](#buttonItem)  | yes | link information of the text|  
 
 #### ButtonItem
@@ -183,7 +183,7 @@ Response is represented as simple flat json objects with the following keys:
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `text` | string  | yes | text on the button which can be clicked to open a webview to collection information|
-  | `message` | string  | yes | message of the response which will be displayed upon the button|
+  | `message` | string  | yes | message of the response which will be displayed above the button|
   | `ifNeedConfirm` | bool  | yes | whether need the visitor to double confirm the form field values |
   | `fields` | array of [Field](#field)  | yes | fields displayed on webview|
 
@@ -206,7 +206,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `label` | string  | yes | label of the form field item |
+  | `name` | string  | yes | name of the form field item |
   | `value` | string  | yes | value of the form field item |
   
 #### VisitorInfo
