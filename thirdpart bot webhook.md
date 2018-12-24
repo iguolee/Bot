@@ -19,7 +19,7 @@ When we received a response whose event type is chatJoined, we will pass this ac
 
 |Name| Type    |Mandatory | Description     | 
 | - | - | - | - | 
-|`answer` | array of [Response](#response) | yes |   | 
+|`answer` | array of [Response](#response) | yes | An asnwer is composed of one or more responses, regardless of their type.  | 
 
 Here is a sample of response json: [sample](#response-sample-json)
 
