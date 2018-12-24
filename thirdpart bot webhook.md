@@ -173,7 +173,6 @@ Response is represented as simple flat json objects with the following keys:
   | `text`| string  | yes | text on button |
   | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink or webview, it is mandatory, otherwise not |
   | `intentId`| string  | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
-  | `intentName`| string  | no | name of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
   | `openIn` | enums | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory, otherwise not |
   | `webviewOpenStyle` | enums | no | enums contain compact, tall, full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
 
