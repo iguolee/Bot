@@ -124,20 +124,20 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `type` | enums | yes | enums contain hyperlink and goToIntent |
+  | `type` | enums | yes | it is an enum value with options: hyperlink and goToIntent |
   | `startPosition` | int | yes | start index of text which contains link info |
   | `endPosition` | int | yes | end index of text which contains link info |
   | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink, it is mandatory, otherwise not |
   | `intentId` | string| no | id of the intent in the intent link. When the type is goToIntent, it is mandatory, otherwise not  |
-  | `displayText` | string | no | name of intent that you want user to click.. When the type is goToIntent, it is mandatory, otherwise not |
-  | `openIn` | enums | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is goToIntent, it is mandatory, otherwise not |
+  | `displayText` | string | no | display text of goToIntent link. When the type is goToIntent, it is mandatory, otherwise not |
+  | `openIn` | enums | no | it is an enum value with options: currentWindow,sideWindow and newWindow. This field defined the way that webpage will be opened. When the type is goToIntent, it is mandatory, otherwise not |
 
 #### UrlResponse
   UrlResponse is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `url` | string  | yes | url of the video/image and so on |
+  | `url` | string  | yes | url of the video, image and so on |
 
 #### QuickReplyResponse
   QuickReplyResponse is represented as simple flat JSON objects with the following keys:
@@ -152,7 +152,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `type` | string  | yes | enums contain  goToIntent, contactAgent, text|
+  | `type` | string  | yes | it is an enum value with options: goToIntent, contactAgent and text|
   | `text`| string  | yes | text on quick reply |
   | `intentId`| string  | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |  
 
@@ -169,12 +169,12 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `type` | string  | yes | enums contain  enums contain hyperlink,webview and goToIntent|
+  | `type` | string  | yes | it is an enum value with options: hyperlink,webview and goToIntent|
   | `text`| string  | yes | text on button |
   | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink or webview, it is mandatory, otherwise not |
   | `intentId`| string  | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
-  | `openIn` | enums | no | enums contain currentWindow,sideWindow,newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory, otherwise not |
-  | `webviewOpenStyle` | enums | no | enums contain compact, tall, full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
+  | `openIn` | enums | no | it is an enum value with options: currentWindow,sideWindow and newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory, otherwise not |
+  | `webviewOpenStyle` | enums | no | it is an enum value with options: compact, tall and full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
 
 
 #### CollectFormValueResponse
@@ -195,7 +195,7 @@ Response is represented as simple flat json objects with the following keys:
   | - | - | - | - | 
   | `name` | string  | yes | name of the field|
   | `value` | string  | yes | value of the field item |
-  | `type` | string  | yes | field type, contains text, textArea, radio, checkBox, dropDownList, checkBoxList |
+  | `type` | string  | yes | it is an enum value with options: text, textArea, radio, checkBox, dropDownList and checkBoxList |
   | `ifRequired` | bool  | yes | when it is true, visitor have to input a value in the field before submit |
   | `ifMasked` | bool  | yes | when it is true, information collected will replaced by * in chat log for security |
   | `options` | an array of string  | no | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose. When the type is dropDownList or checkBoxList, it is mandatory, otherwise not |
