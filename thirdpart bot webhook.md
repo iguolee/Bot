@@ -2,7 +2,7 @@
 
 ## Third-Party Bot Webhook Event
 
- ### Chat Joined
+ ### Chat Joined Event
 
 When we received a response whose event type is chatJoined, we will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
@@ -23,7 +23,7 @@ When we received a response whose event type is chatJoined, we will pass this ac
 
 Here is a sample of response json: [sample](#response-sample-json)
 
-### Visitor Question Asked Event
+### Question Asked Event
 
 When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
 You need process this message and information within this webhook using your own bot engine and give us a formatted 
@@ -43,7 +43,7 @@ response so that we can give visitor an answer base on your response through liv
 
 The same as Chat Started Event
   
-  ### Intent Link Clicked Event
+  ### Intent Clicked Event
 
 If the answer we give to visitor contains link/button/quickreply which point to an intent, when visitor click this link/button/quickreply, we will pass this action to this webhook with intent id and other information we defined. You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
 
@@ -62,7 +62,7 @@ If the answer we give to visitor contains link/button/quickreply which point to 
 
 The same as Chat Started Event
   
-  ### Visitor Location Shared Event
+  ### Location Shared Event
 
 When we received a response whose event type is locationShared, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on nformation we provided through this webhook.
 
@@ -81,7 +81,7 @@ When we received a response whose event type is locationShared, we will display 
 
 The same as Chat Started Event
   
-  ### Form Collected Event
+  ### Form Submitted Event
 
 When we received a response whose event type is formSubmitted, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
 
