@@ -41,7 +41,7 @@ response so that we can give visitor an answer base on your response through liv
 
   #### Response Data Format
 
-The same as Chat Started Event
+The same as Chat Joined Event
   
   ### Intent Clicked Event
 
@@ -60,7 +60,7 @@ If the answer we give to visitor contains link/button/quickreply which point to 
 
   #### Response Data Format
 
-The same as Chat Started Event
+The same as Chat Joined Event
   
   ### Location Shared Event
 
@@ -79,7 +79,7 @@ When we received a response whose event type is locationShared, we will display 
   
   #### Response Data Format
 
-The same as Chat Started Event
+The same as Chat Joined Event
   
   ### Form Submitted Event
 
@@ -98,7 +98,7 @@ When we received a response whose event type is formSubmitted, we will display a
   
   #### Response Data Format
 
-The same as Chat Started Event
+The same as Chat Joined Event
   
 ### Third-Party Bot webhook Related Object Json Format
 
